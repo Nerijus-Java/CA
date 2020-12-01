@@ -1,4 +1,4 @@
-package com.JavaCode.Nd.Nd1a;
+package com.JavaCode.Nd.Nd1_A;
 
 import java.util.Scanner;
 
