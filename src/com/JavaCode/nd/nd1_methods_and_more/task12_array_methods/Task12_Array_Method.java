@@ -1,4 +1,4 @@
-package com.JavaCode.Nd.Nd1_methods_and_more.U12_Array_Methods;
+package com.JavaCode.nd.nd1_methods_and_more.task12_array_methods;
 
 public class Task12_Array_Method {
 

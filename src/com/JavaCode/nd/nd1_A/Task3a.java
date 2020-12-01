@@ -1,8 +1,8 @@
-package com.JavaCode.Nd.Nd1_A;
+package com.JavaCode.nd.nd1_A;
 
 import java.util.Scanner;
 
-public class U3a {
+public class Task3a {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

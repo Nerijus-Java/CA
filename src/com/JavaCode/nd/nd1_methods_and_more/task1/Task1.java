@@ -1,4 +1,4 @@
-package com.JavaCode.Nd.Nd1_methods_and_more.U1;
+package com.JavaCode.nd.nd1_methods_and_more.task1;
 
 public class Task1 {
 

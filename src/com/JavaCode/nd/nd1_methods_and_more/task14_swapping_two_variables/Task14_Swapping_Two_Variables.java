@@ -1,4 +1,4 @@
-package com.JavaCode.Nd.Nd1_methods_and_more.U14_Swapping_Two_Variables;
+package com.JavaCode.nd.nd1_methods_and_more.task14_swapping_two_variables;
 
 import java.util.Scanner;
 
