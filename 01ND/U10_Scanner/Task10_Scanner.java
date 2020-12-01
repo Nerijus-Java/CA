@@ -1,0 +1,13 @@
+package com.JavaCode.Nd.Nd1_methods_and_more.U10_Scanner;
+
+import java.util.Scanner;
+
+public class Task10_Scanner {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter your name");
+        String name = sc.nextLine();
+        System.out.println("Hello " + name);
+    }
+}
