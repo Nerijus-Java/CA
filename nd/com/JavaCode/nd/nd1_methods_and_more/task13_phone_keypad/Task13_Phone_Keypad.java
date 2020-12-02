@@ -19,20 +19,25 @@ public class Task13_Phone_Keypad {
         System.out.println(arrayToString(enteredNumbersArray,letters));
     }
 
-    public static ArrayList<String> charArrayToArrayList(char[] toChar){
-        StringBuilder holder = new StringBuilder();
-        ArrayList<String> enteredNumbersArray = new ArrayList<>();
+//    public static ArrayList<String> charArrayToArrayList(char[] toChar){
+//        StringBuilder holder = new StringBuilder();
+//        ArrayList<String> enteredNumbersArray = new ArrayList<>();
+//
+//        for (char c : toChar){
+//            if (c == ','){
+//                enteredNumbersArray.add(holder.toString());
+//                holder = new StringBuilder();
+//            } else {
+//                holder.append(c);
+//            }
+//        }
+//        enteredNumbersArray.add(holder.toString());
+//        return enteredNumbersArray;
+//    }
 
-        for (char c : toChar){
-            if (c == ','){
-                enteredNumbersArray.add(holder.toString());
-                holder = new StringBuilder();
-            } else {
-                holder.append(c);
-            }
-        }
-        enteredNumbersArray.add(holder.toString());
-        return enteredNumbersArray;
+    public static String[] charArrayToStringArray(char[] chars){
+        String holder = " ";
+        String[] strings = new String[];
     }
 
     public static String arrayToString (ArrayList<String> enteredNumbersArray , String[] letters){
