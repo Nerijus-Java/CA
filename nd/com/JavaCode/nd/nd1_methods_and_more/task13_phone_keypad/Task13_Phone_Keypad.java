@@ -35,9 +35,22 @@ public class Task13_Phone_Keypad {
 //        return enteredNumbersArray;
 //    }
 
-    public static String[] charArrayToStringArray(char[] chars){
-        String holder = " ";
-        String[] strings = new String[];
+    public static String[] charsToStrings(char[] chars){
+        String[] strings = new String[7];
+        String holder = "";
+        int count = 0;
+        for(char c : chars){
+            if (c == ' '){
+                strings[count] = holder;
+                holder = "";
+                ++count;
+            }else {
+                holder += c;
+            }
+        }
+        strings[count] = holder;
+        strings[count + 1] = " ";
+        return strings;
     }
 
     public static String arrayToString (ArrayList<String> enteredNumbersArray , String[] letters){
