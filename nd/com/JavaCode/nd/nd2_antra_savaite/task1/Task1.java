@@ -26,7 +26,7 @@ public class Task1 {
     }
 
     public static String[] charsToStrings(char[] chars){
-        String[] strings = new String[7];
+        String[] strings = new String[6];
         String holder = "";
         int count = 0;
         for(char c : chars){
@@ -39,7 +39,6 @@ public class Task1 {
             }
         }
         strings[count] = holder;
-        strings[count + 1] = " ";
         return strings;
     }
 
