@@ -1,6 +1,5 @@
 package com.JavaCode.nd.nd1_methods_and_more.task13_phone_keypad;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Task13_Phone_Keypad {
