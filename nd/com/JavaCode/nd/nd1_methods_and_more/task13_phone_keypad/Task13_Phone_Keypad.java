@@ -14,33 +14,18 @@ public class Task13_Phone_Keypad {
         String enteredNumbers = sc.nextLine();
 
         char[] toChar = enteredNumbers.toCharArray();
-        ArrayList<String> enteredNumbersArray = charArrayToArrayList(toChar);
 
-        System.out.println(arrayToString(enteredNumbersArray,letters));
+        String[] numbers = charsToStrings(toChar,findAmountOfVariables(toChar));
+
+        System.out.println(arrayToString(numbers,letters));
     }
 
-//    public static ArrayList<String> charArrayToArrayList(char[] toChar){
-//        StringBuilder holder = new StringBuilder();
-//        ArrayList<String> enteredNumbersArray = new ArrayList<>();
-//
-//        for (char c : toChar){
-//            if (c == ','){
-//                enteredNumbersArray.add(holder.toString());
-//                holder = new StringBuilder();
-//            } else {
-//                holder.append(c);
-//            }
-//        }
-//        enteredNumbersArray.add(holder.toString());
-//        return enteredNumbersArray;
-//    }
-
-    public static String[] charsToStrings(char[] chars){
-        String[] strings = new String[7];
+    public static String[] charsToStrings(char[] chars, int AmountOfVariables){
+        String[] strings = new String[AmountOfVariables];
         String holder = "";
         int count = 0;
         for(char c : chars){
-            if (c == ' '){
+            if (c == ','){
                 strings[count] = holder;
                 holder = "";
                 ++count;
@@ -49,16 +34,25 @@ public class Task13_Phone_Keypad {
             }
         }
         strings[count] = holder;
-        strings[count + 1] = " ";
         return strings;
     }
 
-    public static String arrayToString (ArrayList<String> enteredNumbersArray , String[] letters){
-        StringBuilder word = new StringBuilder();
-        for (String n : enteredNumbersArray){
-            word.append(numberToPhoneKeyString(n, letters));
+    public static int findAmountOfVariables(char[] chars){
+        int spaces = 0;
+        for (char c : chars){
+            if (c == ','){
+                spaces++;
+            }
         }
-        return word.toString();
+        return spaces + 1;
+    }
+
+    public static String arrayToString (String[] words , String[] letters){
+        String wordTwo = "";
+        for (String n : words){
+            wordTwo += numberToPhoneKeyString(n,letters);
+        }
+        return wordTwo;
     }
 
     private static String numberToPhoneKeyString (String number , String[] letters){
