@@ -17,6 +17,18 @@ public class DayCal {
         this.year = year;
     }
 
+    public String getInfo(){
+        return whatDay(weekDay) + " " + whatMonth(month) + " " + day + " " + year;
+    }
+
+    public String getMonth(){
+        return whatMonth(month);
+    }
+
+    public String getDay(){
+        return whatDay(weekDay);
+    }
+
     private String whatDay(Days weekDay){
         switch (weekDay){
             case MONDAY:
@@ -68,17 +80,4 @@ public class DayCal {
                 return "Error";
         }
     }
-
-    public String getInfo(){
-        return whatDay(weekDay) + " " + whatMonth(month) + " " + day + " " + year;
-    }
-
-    public String getMonth(){
-        return whatMonth(month);
-    }
-
-    public String getDay(){
-        return whatDay(weekDay);
-    }
-
 }
