@@ -1,4 +1,6 @@
-package com.JavaCode.lessons.week2.enumTasks;
+package com.JavaCode.lessons.week2.enumTasks.task1;
+
+import com.JavaCode.lessons.week2.enumTasks.Days;
 
 public class Task {
 
