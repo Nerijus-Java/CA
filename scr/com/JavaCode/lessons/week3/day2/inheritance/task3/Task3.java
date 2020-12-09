@@ -9,7 +9,13 @@ public class Task3 {
         System.out.println();
 
         Student studentOne = new Student("Nerijus", "Viliusis", 18, 5241);
-        System.out.println(studentOne.getStudentInfo());
+        System.out.println(studentOne.getInfo());
+
+        System.out.println();
+
+        Student studentTwo = new Student("James","May",25);
+        studentTwo.setStudentId(6523);
+        System.out.println(studentTwo.getInfo());
 
     }
 }

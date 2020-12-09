@@ -12,7 +12,8 @@ public class Student extends Person {
         super(name, surname, age);
     }
 
-    public String getStudentInfo() {
+    @Override
+    public String getInfo() {
         return "Name :" + getName() + '\n'
                 + "Surname :" + getSurname() + '\n'
                 + "Age :" + getAge() + '\n'
