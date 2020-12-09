@@ -2,7 +2,7 @@ package nd.nd2.nd2_Advance.task19And20;
 
 import java.util.Scanner;
 
-public class Task19 {
+public class Task19And20 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
