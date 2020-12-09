@@ -5,7 +5,6 @@ import java.util.Scanner;
 public class Task8 {
 
 
-    //NoT Done
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -18,13 +17,15 @@ public class Task8 {
         System.out.print("Number of years :");
         int years = sc.nextInt();
 
-        for (int i = 0; i < years; i++) {
-            System.out.println(1 + amountOfIntrest(investment ,interest/12 ,i));
+        interest *= 0.01;
+
+        for (int i = 1; i < years; i++) {
+            System.out.println(i + amountOfIntrest(i , investment, interest / 12));
         }
     }
 
-    public static float amountOfIntrest(float investment, float interest , int years){
-        float formulaOne = (1 + interest * (years * 12));
-        return investment * formulaOne;
+    public static double amountOfIntrest(int years, float investment, float interest) {
+
+        return (investment * Math.pow(1 + interest, years * 12));
     }
 }
