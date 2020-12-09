@@ -1,4 +1,4 @@
-package com.JavaCode.nd.nd1_methods_and_more.task13_phone_keypad;
+package nd.nd1_methods_and_more.task13_phone_keypad;
 
 import java.util.Scanner;
 
