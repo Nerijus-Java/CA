@@ -97,11 +97,9 @@ public class Task19And20 {
     public static int amountOfWords(String sentence) {
         char[] sentenceArray = sentence.toCharArray();
         int count = 1;
-        int charCount = 0;
         for (char c : sentenceArray) {
             if (c == ' ') {
                 count++;
-                charCount++;
             }
         }
         return count;
