@@ -33,6 +33,11 @@ public class Project{
                 }
                 break;
             case "2":
+                while (!userInput.equals("-")) {
+                    menu.costMenu();
+                    userInput = sc.nextLine();
+                    costSwitch(userInput, loggedInUser);
+                }
                 break;
             case "3":
                 System.out.println("Your balance is " + loggedInUser.getBalance());
@@ -44,26 +49,101 @@ public class Project{
     }
 
     public static void incomeSwitch(String userInput, User loggedInUser){
+        Menus menu = new Menus();
+        Scanner sc = new Scanner(System.in);
         switch (userInput){
             case "1":
+                menu.amountMenu();
+                int amount = sc.nextInt();
+                loggedInUser.setBalance(loggedInUser.getBalance() + amount);
                 break;
             case "2":
+                menu.amountMenu();
+                amount = sc.nextInt();
+                loggedInUser.setBalance(loggedInUser.getBalance() + amount);
                 break;
             case "3":
+                menu.amountMenu();
+                amount = sc.nextInt();
+                loggedInUser.setBalance(loggedInUser.getBalance() + amount);
                 break;
             case "4":
+                menu.amountMenu();
+                amount = sc.nextInt();
+                loggedInUser.setBalance(loggedInUser.getBalance() + amount);
                 break;
             case "5":
+                menu.amountMenu();
+                amount = sc.nextInt();
+                loggedInUser.setBalance(loggedInUser.getBalance() + amount);
                 break;
             case "6":
+                menu.amountMenu();
+                amount = sc.nextInt();
+                loggedInUser.setBalance(loggedInUser.getBalance() + amount);
                 break;
             case "7":
+                menu.amountMenu();
+                amount = sc.nextInt();
+                loggedInUser.setBalance(loggedInUser.getBalance() + amount);
                 break;
             case "-":
                 break;
         }
     }
 
-
+    public static void costSwitch(String userInput, User loggedInUser){
+        Menus menu = new Menus();
+        Scanner sc = new Scanner(System.in);
+        switch (userInput){
+            case "1":
+                menu.amountMenu();
+                int amount = sc.nextInt();
+                loggedInUser.setBalance(loggedInUser.getBalance() - amount);
+                break;
+            case "2":
+                menu.amountMenu();
+                amount = sc.nextInt();
+                loggedInUser.setBalance(loggedInUser.getBalance() - amount);
+                break;
+            case "3":
+                menu.amountMenu();
+                amount = sc.nextInt();
+                loggedInUser.setBalance(loggedInUser.getBalance() - amount);
+                break;
+            case "4":
+                menu.amountMenu();
+                amount = sc.nextInt();
+                loggedInUser.setBalance(loggedInUser.getBalance() - amount);
+                break;
+            case "5":
+                menu.amountMenu();
+                amount = sc.nextInt();
+                loggedInUser.setBalance(loggedInUser.getBalance() - amount);
+                break;
+            case "6":
+                menu.amountMenu();
+                amount = sc.nextInt();
+                loggedInUser.setBalance(loggedInUser.getBalance() - amount);
+                break;
+            case "7":
+                menu.amountMenu();
+                amount = sc.nextInt();
+                loggedInUser.setBalance(loggedInUser.getBalance() - amount);
+                break;
+            case "8":
+                menu.amountMenu();
+                amount = sc.nextInt();
+                loggedInUser.setBalance(loggedInUser.getBalance() - amount);
+                break;
+            case "9":
+                menu.amountMenu();
+                amount = sc.nextInt();
+                loggedInUser.setBalance(loggedInUser.getBalance() - amount);
+                break;
+            case "-":
+                break;
+        }
+    }
 
 }

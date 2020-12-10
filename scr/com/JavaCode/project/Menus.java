@@ -25,6 +25,27 @@ public class Menus {
         System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
     }
 
+    public void costMenu(){
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        System.out.println("[1] Shop");
+        System.out.println("[2] Leasing fees");
+        System.out.println("[3] Housing taxes");
+        System.out.println("[4] Studies");
+        System.out.println("[5] Entertainment");
+        System.out.println("[6] car");
+        System.out.println("[7] Clothing");
+        System.out.println("[8] Health");
+        System.out.println("[9] Other");
+        System.out.println();
+        System.out.println("[-] back");
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+    }
+
+    public void amountMenu(){
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        System.out.print("Enter :" );
+    }
+
 
 
 }
