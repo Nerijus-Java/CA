@@ -1,7 +1,7 @@
 package com.JavaCode.lessons.week3.day4.polmorfizmas.task1;
 
 
-public class Bread extends Products {
+public class Bread extends Product {
 
     private int date;
 

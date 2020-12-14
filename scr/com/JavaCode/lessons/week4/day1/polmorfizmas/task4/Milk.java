@@ -1,10 +1,12 @@
-package com.JavaCode.lessons.week3.day4.polmorfizmas.task1;
+package com.JavaCode.lessons.week4.day1.polmorfizmas.task4;
 
-public class Milk extends Product {
+public class Milk implements Product {
     private int date;
+    private int calories;
 
     public Milk() {
         this.date = getRandom();
+        this.calories = getRandomCal();
     }
 
     public boolean isSafeToConsume() {
@@ -13,5 +15,9 @@ public class Milk extends Product {
         } else {
             return true;
         }
+    }
+
+    public int caloriesAmount() {
+        return calories;
     }
 }

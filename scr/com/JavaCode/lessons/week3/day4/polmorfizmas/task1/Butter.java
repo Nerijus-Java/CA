@@ -1,6 +1,6 @@
 package com.JavaCode.lessons.week3.day4.polmorfizmas.task1;
 
-public class Butter extends Products {
+public class Butter extends Product {
 
     private int date;
 
