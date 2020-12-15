@@ -5,15 +5,9 @@ import java.util.Random;
 interface Product {
 
     boolean isSafeToConsume();
-    int caloriesAmount();
 
     default int getRandom() {
         Random random = new Random();
         return random.nextInt(5);
-    }
-
-    default int getRandomCal() {
-        Random random = new Random();
-        return random.nextInt(100);
     }
 }

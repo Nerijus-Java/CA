@@ -11,6 +11,6 @@ public class ProductHelper {
     }
 
     public int CalorieAmount(Product product) {
-        return product.caloriesAmount();
+        return product.getRandom() * 100;
     }
 }

@@ -6,7 +6,7 @@ public class Milk implements Product {
 
     public Milk() {
         this.date = getRandom();
-        this.calories = getRandomCal();
+        this.calories = date * 100;
     }
 
     public boolean isSafeToConsume() {
@@ -17,7 +17,4 @@ public class Milk implements Product {
         }
     }
 
-    public int caloriesAmount() {
-        return calories;
-    }
 }

@@ -6,7 +6,7 @@ public class Bread implements Product {
 
     public Bread() {
         this.date = getRandom();
-        this.calories = getRandomCal();
+        this.calories = date * 100;
     }
 
     public boolean isSafeToConsume() {
@@ -17,8 +17,4 @@ public class Bread implements Product {
         }
     }
 
-    @Override
-    public int caloriesAmount() {
-        return calories;
-    }
 }

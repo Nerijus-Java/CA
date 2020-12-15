@@ -6,7 +6,7 @@ public class Yogurt implements Product {
 
     public Yogurt() {
         this.date = getRandom();
-        this.calories = getRandomCal();
+        this.calories = date * 100;
     }
 
     public boolean isSafeToConsume() {
@@ -16,8 +16,5 @@ public class Yogurt implements Product {
             return true;
         }
     }
-    @Override
-    public int caloriesAmount() {
-        return calories;
-    }
+
 }
