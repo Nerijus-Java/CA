@@ -1,5 +1,7 @@
 package com.JavaCode.lessons.week4.day2.dateTask;
 
+import java.text.SimpleDateFormat;
+
 import java.util.Calendar;
 
 public class DateTask2 {
@@ -8,9 +10,12 @@ public class DateTask2 {
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, 2002);
-        calendar.set(Calendar.MONTH, 4);
-        calendar.set(Calendar.DATE, 4);
+        calendar.set(Calendar.MONTH, 3);
+        calendar.set(Calendar.DAY_OF_MONTH, 4);
 
-        System.out.println(calendar.get(Calendar.DATE) + " " + calendar.get(Calendar.MONTH) + " " + calendar.get(Calendar.YEAR));
+        SimpleDateFormat fmt;
+        fmt = new SimpleDateFormat("dd/MM/yyyy");
+
+        System.out.println("Birthday: " + fmt.format(calendar.getTime()));
     }
 }
