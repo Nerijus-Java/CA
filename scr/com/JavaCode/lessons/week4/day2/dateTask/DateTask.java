@@ -15,8 +15,5 @@ public class DateTask {
         System.out.println("Date: " + fmt.format(now));
 
 
-
-
-
     }
 }
