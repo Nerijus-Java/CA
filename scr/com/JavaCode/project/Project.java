@@ -85,19 +85,19 @@ public class Project {
                 menu.amountMenu();
                 amount = sc.nextInt();
                 loggedInUser.setBalance(loggedInUser.getBalance() + amount);
-                catagoryHelper.add("Salary", amount);
+                catagoryHelper.add("Individual activities", amount);
                 break;
             case "6":
                 menu.amountMenu();
                 amount = sc.nextInt();
                 loggedInUser.setBalance(loggedInUser.getBalance() + amount);
-                catagoryHelper.add("Individual activities", amount);
+                catagoryHelper.add("Gifts", amount);
                 break;
             case "7":
                 menu.amountMenu();
                 amount = sc.nextInt();
                 loggedInUser.setBalance(loggedInUser.getBalance() + amount);
-                catagoryHelper.add("Gifts", amount);
+                catagoryHelper.add("Other", amount);
                 break;
             case "-":
                 break;

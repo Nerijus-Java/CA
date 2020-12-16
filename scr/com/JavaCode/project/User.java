@@ -1,7 +1,7 @@
 package com.JavaCode.project;
 
 public class User {
-    private String name;
+    private final String name;
     private int balance = 0;
 
     public User(String name) {
