@@ -7,6 +7,7 @@ public class Menus {
         System.out.println("[1] income");
         System.out.println("[2] costs");
         System.out.println("[3] balance");
+        System.out.println("[4] get check");
         System.out.println("[-] Done");
         System.out.println("_______________");
     }

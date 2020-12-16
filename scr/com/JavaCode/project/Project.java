@@ -8,6 +8,7 @@ public class Project {
         String userInput = "";
         Scanner sc = new Scanner(System.in);
         Menus menu = new Menus();
+        CatagoryHelper catagoryHelper = new CatagoryHelper();
 
         User user = new User("Nerijus");
         System.out.println("***************");
@@ -16,94 +17,96 @@ public class Project {
         while (!userInput.equals("-")) {
             menu.mainMenu();
             userInput = sc.nextLine();
-            mainSwitch(userInput, user);
+            mainSwitch(userInput, user, catagoryHelper);
         }
     }
 
-    public static void mainSwitch(String userInput, User loggedInUser) {
+    public static void mainSwitch(String userInput, User loggedInUser, CatagoryHelper catagoryHelper) {
         Menus menu = new Menus();
         Scanner sc = new Scanner(System.in);
-
         switch (userInput) {
             case "1":
                 while (!userInput.equals("-")) {
                     menu.incomeMenu();
                     userInput = sc.nextLine();
-                    incomeSwitch(userInput, loggedInUser);
+                    incomeSwitch(userInput, loggedInUser, catagoryHelper);
                 }
                 break;
             case "2":
                 while (!userInput.equals("-")) {
                     menu.costMenu();
                     userInput = sc.nextLine();
-                    costSwitch(userInput, loggedInUser);
+                    costSwitch(userInput, loggedInUser, catagoryHelper);
                 }
                 break;
             case "3":
-                System.out.println("Your balance is " + loggedInUser.getBalance());
+                System.out.println("Your balance is : €" + loggedInUser.getBalance());
                 break;
+            case "4":
+                System.out.println(catagoryHelper.printAllTransactions());
+                System.out.println("Your balance is : €" + loggedInUser.getBalance());
+                break;
+
             case "-":
                 System.out.println("See you next time " + loggedInUser.getName());
                 break;
         }
     }
 
-    public static void incomeSwitch(String userInput, User loggedInUser) {
+    public static void incomeSwitch(String userInput, User loggedInUser, CatagoryHelper catagoryHelper) {
         Menus menu = new Menus();
         Scanner sc = new Scanner(System.in);
-        CatagoryHelper catagoryHelperIncome = new CatagoryHelper();
         switch (userInput) {
             case "1":
                 menu.amountMenu();
                 int amount = sc.nextInt();
                 loggedInUser.setBalance(loggedInUser.getBalance() + amount);
-                catagoryHelperIncome.add("Salary", amount);
+                catagoryHelper.add("Salary", amount);
                 break;
             case "2":
                 menu.amountMenu();
                 amount = sc.nextInt();
                 loggedInUser.setBalance(loggedInUser.getBalance() + amount);
-                catagoryHelperIncome.add("Real estate for rent", amount);
+                catagoryHelper.add("Real estate for rent", amount);
                 break;
             case "3":
                 menu.amountMenu();
                 amount = sc.nextInt();
                 loggedInUser.setBalance(loggedInUser.getBalance() + amount);
-                catagoryHelperIncome.add("Scholarship", amount);
+                catagoryHelper.add("Scholarship", amount);
                 break;
             case "4":
                 menu.amountMenu();
                 amount = sc.nextInt();
                 loggedInUser.setBalance(loggedInUser.getBalance() + amount);
-                catagoryHelperIncome.add("Benefit", amount);
+                catagoryHelper.add("Benefit", amount);
                 break;
             case "5":
                 menu.amountMenu();
                 amount = sc.nextInt();
                 loggedInUser.setBalance(loggedInUser.getBalance() + amount);
-                catagoryHelperIncome.add("Salary", amount);
+                catagoryHelper.add("Salary", amount);
                 break;
             case "6":
                 menu.amountMenu();
                 amount = sc.nextInt();
                 loggedInUser.setBalance(loggedInUser.getBalance() + amount);
-                catagoryHelperIncome.add("Individual activities", amount);
+                catagoryHelper.add("Individual activities", amount);
                 break;
             case "7":
                 menu.amountMenu();
                 amount = sc.nextInt();
                 loggedInUser.setBalance(loggedInUser.getBalance() + amount);
-                catagoryHelperIncome.add("Gifts", amount);
+                catagoryHelper.add("Gifts", amount);
                 break;
             case "-":
                 break;
         }
     }
 
-    public static void costSwitch(String userInput, User loggedInUser) {
+    public static void costSwitch(String userInput, User loggedInUser, CatagoryHelper catagoryHelper) {
         Menus menu = new Menus();
         Scanner sc = new Scanner(System.in);
-        CatagoryHelper catagoryHelper = new CatagoryHelper();
         switch (userInput) {
             case "1":
                 menu.amountMenu();
