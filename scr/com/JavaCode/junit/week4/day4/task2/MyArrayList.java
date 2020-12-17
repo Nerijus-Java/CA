@@ -1,4 +1,4 @@
-package com.JavaCode.junit.week4.day4.Task2;
+package com.JavaCode.junit.week4.day4.task2;
 
 public class MyArrayList {
 
