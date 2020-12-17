@@ -5,8 +5,8 @@ import org.junit.Test;
 
 public class CalculatorTest {
 
-    public static final int LAST_NUMBER = 500;
-    public static final int FIRST_NUMBER = 100;
+    public static final int LAST_NUMBER = 1000;
+    public static final int FIRST_NUMBER = 1000;
 
     @Test
     public void testSum() {
