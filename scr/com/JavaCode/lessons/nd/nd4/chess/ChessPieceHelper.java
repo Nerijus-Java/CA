@@ -18,15 +18,27 @@ public class ChessPieceHelper {
     }
 
     public void chessPieceMove(ChessPiece chessPiece, String input){
+
         String xLetter = input.substring(0,1);
         int x = stringToNumber(xLetter);
         int y = Integer.parseInt(input.substring(1,2)) - 1;
-        chessPiece.setX(x);
-        chessPiece.setY(y);
+        if (canPieceMove(chessPiece,x,y)){
+            chessPiece.setX(x);
+            chessPiece.setY(y);
+        }
     }
 
     public ChessPiece[] getChessPieceList() {
         return chessPieceList.chessPieces;
+    }
+
+    private boolean canPieceMove(ChessPiece chessPiece,int x , int y){
+        for (Move m : chessPiece.getMoves()){
+            if (x == m.getX() && y == m.getY()){
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean doesPieceExist(int x, int y){
@@ -49,25 +61,16 @@ public class ChessPieceHelper {
     }
 
     private int stringToNumber(String x){
-        String[] letters = {"A", "B", "C", "D", "E", "F", "G", "H"};
-        switch (x.toUpperCase()){
-            case "A":
-                return 0;
-            case "B":
-                return 1;
-            case "C":
-                return 2;
-            case "D":
-                return 3;
-            case "E":
-                return 4;
-            case "F":
-                return 5;
-            case "G":
-                return 6;
-            default:
-                return 7;
-        }
+        return switch (x.toUpperCase()) {
+            case "A" -> 0;
+            case "B" -> 1;
+            case "C" -> 2;
+            case "D" -> 3;
+            case "E" -> 4;
+            case "F" -> 5;
+            case "G" -> 6;
+            default -> 7;
+        };
     }
 
 }
