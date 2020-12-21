@@ -25,7 +25,6 @@ public class Board {
                     area[i][j] = letters[j] + numbers[i];
                     System.out.print(area[i][j] + "\t");
                 }
-
             }
             System.out.println();
         }
@@ -41,13 +40,16 @@ public class Board {
 
         for (int i = numbers.length - 1; i >= 0; i--) {
             for (int j = 0; j < width; j++) {
-                if (i == knightOne.getY() && j == knightOne.getX()) {
-                    System.out.print(knightOne.printChessPiece() + "\t");
+                if (canPrintPiece(i,j,chessPieceHelper.getChessPieceList())) {
+                    System.out.print(printChessPiece(i,j,chessPieceHelper.getChessPieceList()) + "\t");
+
                 } else if (canMove(i,j,knightOne)){
                     System.out.print("⛆" + "\t");
+
                 } else {
                     area[i][j] = letters[j] + numbers[i];
                     System.out.print(area[i][j] + "\t");
+
                 }
 
             }
@@ -56,13 +58,33 @@ public class Board {
 
     }
 
-    private boolean canMove(int x ,int y, ChessPiece chessPiece){
+    private boolean canMove(int y ,int x, ChessPiece chessPiece){
         chessPiece.wherePieceCanMove();
         for (Move move : chessPiece.getMoves()){
-            if (move.getY() == x && move.getX() == y){
+            if (move.getY() == y && move.getX() == x){
                 return true;
             }
         }
         return false;
+    }
+
+    private boolean canPrintPiece(int y, int x, ChessPiece[] chessPieceList){
+        for (ChessPiece piece : chessPieceList){
+            if (piece != null){
+                if (piece.getY() == y && piece.getX() == x){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private String printChessPiece(int y,int x, ChessPiece[] chessPieceList){
+        for (ChessPiece piece : chessPieceList){
+            if (piece.getY() == y && piece.getX() == x){
+                return piece.printChessPiece();
+            }
+        }
+        return " ";
     }
 }

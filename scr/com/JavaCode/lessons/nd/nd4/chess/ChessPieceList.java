@@ -5,12 +5,12 @@ public class ChessPieceList {
     ChessPiece[] chessPieces = new ChessPiece[1];
     int listLength = chessPieces.length;
 
-    public void addChessPiece(ChessPiece chessPiece){
+    public void addChessPiece(ChessPiece chessPiece) {
         ChessPiece[] newChessPieces = new ChessPiece[listLength + 1];
         for (int i = 0; i < listLength; i++) {
-            if (chessPieces[i] == null){
+            if (chessPieces[i] == null) {
                 newChessPieces[i] = chessPiece;
-            }else {
+            } else {
                 newChessPieces[i] = chessPieces[i];
             }
         }

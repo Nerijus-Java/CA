@@ -8,7 +8,9 @@ interface ChessPiece {
 
     int getY();
     int getX();
+
     void setY(int y);
     void setX(int x);
+
     Move[] getMoves();
 }

@@ -22,6 +22,7 @@ public class Main {
                 b.fulfillChoose();
                 System.out.println("would you like to move this chess piece? 1 = yes ,0 = no");
                 userInput = sc.nextLine();
+
                 if (userInput.equals("1")){
                     System.out.println("Enter where to");
 

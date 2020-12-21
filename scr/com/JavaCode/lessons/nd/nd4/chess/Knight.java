@@ -13,7 +13,8 @@ public class Knight implements ChessPiece{
         x = 6;
     }
 
-    public void wherePieceCanMove(){
+    @Override
+    public void wherePieceCanMove() {
         moves[0] = new Move(x + 1,y + 2);
         moves[1] = new Move(x - 1,y + 2);
         moves[2] = new Move(x + 1,y - 2);
@@ -24,12 +25,9 @@ public class Knight implements ChessPiece{
         moves[7] = new Move(x + 2,y - 1);
     }
 
-    public String printChessPiece(){
+    @Override
+    public String printChessPiece() {
         return "♘";
-    }
-
-    public Move[] getMoves() {
-        return moves;
     }
 
     @Override
@@ -50,6 +48,11 @@ public class Knight implements ChessPiece{
     @Override
     public void setX(int x) {
         this.x = x;
+    }
+
+    @Override
+    public Move[] getMoves() {
+        return moves;
     }
 
 
