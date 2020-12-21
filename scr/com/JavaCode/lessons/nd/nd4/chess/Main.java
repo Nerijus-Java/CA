@@ -21,10 +21,15 @@ public class Main {
             while (!userInput.equals("-")){
                 b.fulfillChoose();
                 System.out.println("would you like to move this chess piece? 1 = yes ,0 = no");
+                userInput = sc.nextLine();
                 if (userInput.equals("1")){
+                    System.out.println("Enter where to");
 
-                }else {
-                    userInput = "-";
+                    userInput = sc.nextLine();
+                    chessPieceHelper.chessPieceMove(chessPieceChosen,userInput);
+                    break;
+                }else if (userInput.equals("0")){
+                    break;
                 }
             }
         }

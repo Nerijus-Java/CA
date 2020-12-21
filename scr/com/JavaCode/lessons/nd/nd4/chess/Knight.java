@@ -6,7 +6,7 @@ package com.JavaCode.lessons.nd.nd4.chess;
 public class Knight implements ChessPiece{
     private int y ;
     private int x ;
-    private Move[] moves;
+    private Move[] moves = new Move[8];
 
     public Knight() {
         y = 0;
@@ -14,21 +14,22 @@ public class Knight implements ChessPiece{
     }
 
     public void wherePieceCanMove(){
-
-        Move move1 = new Move(x + 1,y + 2);
-        Move move2 = new Move(x - 1,y + 2);
-        Move move3 = new Move(x + 1,y - 2);
-        Move move4 = new Move(x - 1,y - 2);
-        Move move5 = new Move(x - 2,y + 1);
-        Move move6 = new Move(x - 2,y - 1);
-        Move move7 = new Move(x + 2,y + 1);
-        Move move8 = new Move(x + 2,y - 1);
-
-
+        moves[0] = new Move(x + 1,y + 2);
+        moves[1] = new Move(x - 1,y + 2);
+        moves[2] = new Move(x + 1,y - 2);
+        moves[3] = new Move(x - 1,y - 2);
+        moves[4] = new Move(x - 2,y + 1);
+        moves[5] = new Move(x - 2,y - 1);
+        moves[6] = new Move(x + 2,y + 1);
+        moves[7] = new Move(x + 2,y - 1);
     }
 
     public String printChessPiece(){
         return "♘";
+    }
+
+    public Move[] getMoves() {
+        return moves;
     }
 
     @Override

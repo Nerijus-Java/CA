@@ -10,4 +10,5 @@ interface ChessPiece {
     int getX();
     void setY(int y);
     void setX(int x);
+    Move[] getMoves();
 }

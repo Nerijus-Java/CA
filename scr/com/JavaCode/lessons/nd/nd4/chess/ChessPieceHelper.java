@@ -17,7 +17,10 @@ public class ChessPieceHelper {
         }
     }
 
-    public void chessPieceMove(ChessPiece chessPiece, int y, int x){
+    public void chessPieceMove(ChessPiece chessPiece, String input){
+        String xLetter = input.substring(0,1);
+        int x = stringToNumber(xLetter);
+        int y = Integer.parseInt(input.substring(1,2)) - 1;
         chessPiece.setX(x);
         chessPiece.setY(y);
     }
