@@ -1,4 +1,4 @@
-package nd.nd1_methods_and_more.task4;
+package com.JavaCode.nd.nd1_methods_and_more.task4;
 
 import java.util.ArrayList;
 import java.util.Scanner;

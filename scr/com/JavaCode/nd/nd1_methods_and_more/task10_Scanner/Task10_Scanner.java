@@ -1,4 +1,4 @@
-package nd.nd1_methods_and_more.task10_Scanner;
+package com.JavaCode.nd.nd1_methods_and_more.task10_Scanner;
 
 import java.util.Scanner;
 

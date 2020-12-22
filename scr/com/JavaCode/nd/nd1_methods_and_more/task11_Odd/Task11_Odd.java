@@ -1,4 +1,4 @@
-package nd.nd1_methods_and_more.task11_Odd;
+package com.JavaCode.nd.nd1_methods_and_more.task11_Odd;
 
 public class Task11_Odd {
 

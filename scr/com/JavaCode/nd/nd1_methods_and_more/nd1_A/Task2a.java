@@ -1,4 +1,4 @@
-package nd.nd1_methods_and_more.nd1_A;
+package com.JavaCode.nd.nd1_methods_and_more.nd1_A;
 
 import java.util.Scanner;
 
