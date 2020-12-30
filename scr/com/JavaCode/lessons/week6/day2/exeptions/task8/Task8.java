@@ -9,17 +9,29 @@ public class Task8 {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         String userInput = "";
 
-        while (!userInput.equals("-")){
-            System.out.println("Enter the date with this format dd-M-yyyy");
-            try {
-                Date date = sdf.parse(sc.nextLine());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+        for (; ; ) {
+            System.out.println("Enter the date with this format: dd-MM-yyyy hh:mm:ss");
+            Date date = null;
+            userInput = sc.nextLine();
 
+            try {
+                date = sdf.parse(userInput);
+            } catch (ParseException | NullPointerException e) {
+                System.out.println("try Again");
+                System.out.println();
+            } finally {
+                try {
+                    System.out.println(sdf.format(date));
+                    break;
+                } catch (NullPointerException ignored){
+
+                }
+            }
         }
+
+
     }
 }
