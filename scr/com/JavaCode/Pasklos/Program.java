@@ -4,9 +4,8 @@ public class Program {
 
     public static void main(String[] args) {
         InterestCalculator interestCalculator = new InterestCalculator(1000,10);
-
-        System.out.println(interestCalculator.toString());
-
+        MenuPrinter menuPrinter = new MenuPrinter(interestCalculator);
+        menuPrinter.printAllMonths();
     }
 
 

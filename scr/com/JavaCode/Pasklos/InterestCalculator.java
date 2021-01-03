@@ -5,10 +5,16 @@ public class InterestCalculator {
 
     private int monthCount;
     private int monthNow;
+
     private float sum;
     private float interest;
     private float payPerMonth;
     private float amountToPay;
+
+    private float sumTotal;
+    private float interestTotal;
+    private float payPerMonthTotal;
+    private float amountToPayTotal;
 
     public InterestCalculator(int sum, int monthCount) {
         this.sum = sum;
@@ -18,28 +24,65 @@ public class InterestCalculator {
     public void nextMonth(){
         this.monthNow = monthNow + 1;
         this.sum = sum - payPerMonth;
+        this.sumTotal += this.sum;
     }
 
     public void totalAmountToPay(){
-        amountToPay = payPerMonth + interest;
+        this.amountToPay = payPerMonth + interest;
+        this.amountToPayTotal += amountToPay;
     }
 
     public void payPerMonthMethod(){
         this.payPerMonth = sum / monthCount;
+        this.payPerMonthTotal += this.payPerMonth;
     }
 
     public void interestSum() {
         this.interest = ((sum * INTEREST) / 100) / 12;
+        this.interestTotal += this.interest;
     }
 
+    public static int getINTEREST() {
+        return INTEREST;
+    }
 
+    public int getMonthCount() {
+        return monthCount;
+    }
 
-    @Override
-    public String toString() {
-        interestSum();
-        payPerMonthMethod();
-        totalAmountToPay();
-        nextMonth();
-        return  monthNow + " " + payPerMonth +  " " + sum + " " + interest + " " + amountToPay;
+    public int getMonthNow() {
+        return monthNow;
+    }
+
+    public float getSum() {
+        return sum;
+    }
+
+    public float getInterest() {
+        return interest;
+    }
+
+    public float getPayPerMonth() {
+        return payPerMonth;
+    }
+
+    public float getAmountToPay() {
+        return amountToPay;
+    }
+
+    public float getSumTotal() {
+        return sumTotal;
+    }
+
+    public float getInterestTotal() {
+        return interestTotal;
+    }
+
+    public float getPayPerMonthTotal() {
+        return payPerMonthTotal;
+    }
+
+    public float getAmountToPayTotal() {
+        return amountToPayTotal;
     }
 }
