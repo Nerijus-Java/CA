@@ -3,7 +3,7 @@ package com.JavaCode.Pasklos;
 public class InterestCalculator {
     public static final int INTEREST = 10;
 
-    private int monthCount;
+    private final int monthCount;
     private int monthNow;
 
     private float sum;
