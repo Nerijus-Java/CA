@@ -4,6 +4,6 @@ public class Second extends First{
 
     @Override
     public void method() throws NullPointerException {
-        throw new NullPointerException("Two");
+        throw new NullPointerException("copy.txt");
     }
 }

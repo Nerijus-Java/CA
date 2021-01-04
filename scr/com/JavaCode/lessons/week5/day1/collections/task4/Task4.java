@@ -8,7 +8,7 @@ public class Task4 {
     public static void main(String[] args) {
         Map<Integer,String> integerStringMap = new HashMap<>();
 
-        integerStringMap.put(1,"One");
+        integerStringMap.put(1,"orig.txt");
         integerStringMap.put(2,"two");
         integerStringMap.put(3,"three");
         integerStringMap.put(4,"four");
@@ -24,7 +24,7 @@ public class Task4 {
         integerStringMap.remove(4);
         System.out.println(integerStringMap);
 
-        integerStringMap.put(1,"One");
+        integerStringMap.put(1,"orig.txt");
         integerStringMap.put(1,"newOne");
         integerStringMap.put(2,"two");
         integerStringMap.put(3,"three");
