@@ -1,4 +1,4 @@
-package com.JavaCode.ND.nd05;
+package com.JavaCode.ND.nd05.arrayTasks;
 
 public class Task7 {
 
