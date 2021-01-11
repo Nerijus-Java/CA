@@ -7,8 +7,9 @@ public class Task1 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int userInput = 0;
-        int holder = 2147483646;
-        for ( ; ; ){
+        int holder = Integer.MAX_VALUE;
+
+        for (int i = 0 ; i < 10 ; i++){
             System.out.print("Enter: ");
             userInput = sc.nextInt();
 
