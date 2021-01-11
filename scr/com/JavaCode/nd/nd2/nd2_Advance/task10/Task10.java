@@ -14,19 +14,14 @@ public class Task10 {
     }
 
     public static boolean isLoopYear(int year) {
-        if (doesDivideBy(year,4)){
-            if (doesDivideBy(year,100)){
-                if (doesDivideBy(year,400)){
+        if (doesDivideBy(year,4)) {
+            if (doesDivideBy(year, 100)) {
+                if (doesDivideBy(year, 400)) {
                     return true;
-                }else {
-                    return false;
                 }
-            }else {
-                return false;
             }
-        }else {
-            return false;
         }
+        return false;
     }
 
     private static boolean doesDivideBy(int number, int divideBy) {
