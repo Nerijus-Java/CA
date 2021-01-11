@@ -6,23 +6,23 @@ public class ChessPieceHelper {
 
     public ChessPiece pieceChosen(String input) throws Exception {
 
-        String xLetter = input.substring(0,1);
+        String xLetter = input.substring(0, 1);
         int x = stringToNumber(xLetter);
-        int y = Integer.parseInt(input.substring(1,2)) - 1;
+        int y = Integer.parseInt(input.substring(1, 2)) - 1;
 
-        if (doesPieceExist(x,y)){
-            return getChessPiece(x,y);
-        }else {
+        if (doesPieceExist(x, y)) {
+            return getChessPiece(x, y);
+        } else {
             throw new Exception("Piece does not exist");
         }
     }
 
-    public void chessPieceMove(ChessPiece chessPiece, String input){
+    public void chessPieceMove(ChessPiece chessPiece, String input) {
 
-        String xLetter = input.substring(0,1);
+        String xLetter = input.substring(0, 1);
         int x = stringToNumber(xLetter);
-        int y = Integer.parseInt(input.substring(1,2)) - 1;
-        if (canPieceMove(chessPiece,x,y)){
+        int y = Integer.parseInt(input.substring(1, 2)) - 1;
+        if (canPieceMove(chessPiece, x, y)) {
             chessPiece.setX(x);
             chessPiece.setY(y);
         }
@@ -32,27 +32,27 @@ public class ChessPieceHelper {
         return chessPieceList.chessPieces;
     }
 
-    private boolean canPieceMove(ChessPiece chessPiece,int x , int y){
-        for (Move m : chessPiece.getMoves()){
-            if (x == m.getX() && y == m.getY()){
+    private boolean canPieceMove(ChessPiece chessPiece, int x, int y) {
+        for (Move m : chessPiece.getMoves()) {
+            if (x == m.getX() && y == m.getY()) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean doesPieceExist(int x, int y){
+    private boolean doesPieceExist(int x, int y) {
 
-        for (ChessPiece p : getChessPieceList()){
-            if (p.getX() == x && p.getY() == y){
+        for (ChessPiece p : getChessPieceList()) {
+            if (p.getX() == x && p.getY() == y) {
                 return true;
             }
         }
         return false;
     }
 
-    private ChessPiece getChessPiece(int x, int y){
-        for (ChessPiece p : chessPieceList.chessPieces){
+    private ChessPiece getChessPiece(int x, int y) {
+        for (ChessPiece p : chessPieceList.chessPieces) {
             if (p.getX() == x && p.getY() == y) {
                 return p;
             }
@@ -60,7 +60,7 @@ public class ChessPieceHelper {
         return null;
     }
 
-    private int stringToNumber(String x){
+    private int stringToNumber(String x) {
         return switch (x.toUpperCase()) {
             case "A" -> 0;
             case "B" -> 1;
