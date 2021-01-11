@@ -36,11 +36,7 @@ public class Task11 {
             }
         }
 
-        if (count >= 2) {
-            return true;
-        } else {
-            return false;
-        }
+        return count >= 2;
     }
 
     private static boolean doesPasswordContainLetters(String password){
