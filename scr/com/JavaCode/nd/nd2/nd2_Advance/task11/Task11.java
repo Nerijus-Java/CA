@@ -29,29 +29,22 @@ public class Task11 {
     }
 
     private static boolean doesPasswordContainNumbers(String password) {
-        int count = 0;
         for (char c : password.toCharArray()) {
             if (c >= '0' && c <= '9') {
-                count++;
+                return true;
             }
         }
-
-        return count >= 2;
+        return false;
     }
 
     private static boolean doesPasswordContainLetters(String password){
         char upperCase;
-        int count = 0;
         for (char c : password.toCharArray()){
             upperCase = Character.toUpperCase(c);
             if (upperCase >= 'A' && upperCase <= 'Z'){
-                count++;
+                return true;
             }
         }
-        if (count >= 1){
-            return true;
-        }else {
-            return false;
-        }
+        return false;
     }
 }
