@@ -1,16 +1,13 @@
 package com.JavaCode.nd.nd2.nd2_Advance.task17;
 
-import java.util.Scanner;
-
 public class Task17 {
 
     public static final String ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public static final String CAESAR_CIPHER = "XYZABCDEFGHIJKLMNOPQRSTUVW";
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter a text");
-        String input = sc.nextLine();
+
+        String input = "Hello";
 
         cipher(input, ABC.toCharArray(), CAESAR_CIPHER.toCharArray());
     }
