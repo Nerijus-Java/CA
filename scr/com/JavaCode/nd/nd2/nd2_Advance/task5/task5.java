@@ -14,14 +14,12 @@ public class task5 {
     }
 
     public static int howManySpaces(char[] userInputChar){
-        int count = 0;
-
+        int count = 1;
         for (char c : userInputChar){
             if (c == ' '){
                 count++;
             }
         }
-        count++;
         return count;
     }
 }
