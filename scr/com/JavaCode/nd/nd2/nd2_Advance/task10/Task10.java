@@ -10,16 +10,13 @@ public class Task10 {
         System.out.println("Enter a year");
         int userInput = sc.nextInt();
 
-        isLoopYear(userInput);
+        System.out.println(isLoopYear(userInput));
+
     }
 
     public static boolean isLoopYear(int year) {
-        if (doesDivideBy(year,4)) {
-            if (doesDivideBy(year, 100)) {
-                if (doesDivideBy(year, 400)) {
-                    return true;
-                }
-            }
+        if (doesDivideBy(year,4) & doesDivideBy(year, 100) & doesDivideBy(year, 400)) {
+            return true;
         }
         return false;
     }
