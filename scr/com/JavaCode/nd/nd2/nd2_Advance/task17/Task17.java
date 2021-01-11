@@ -4,18 +4,19 @@ import java.util.Scanner;
 
 public class Task17 {
 
+    public static final String ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    public static final String CAESAR_CIPHER = "XYZABCDEFGHIJKLMNOPQRSTUVW";
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter a text");
         String input = sc.nextLine();
-        String abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String caesarCipher = "XYZABCDEFGHIJKLMNOPQRSTUVW";
-        cipher(input, abc.toCharArray(), caesarCipher.toCharArray());
+
+        cipher(input, ABC.toCharArray(), CAESAR_CIPHER.toCharArray());
     }
 
     public static void cipher(String input, char[] abc, char[] cipher) {
         char[] charInput = input.toUpperCase().toCharArray();
-        String holder = "";
 
         for (char c : charInput) {
             if (c != ' ') {
@@ -23,7 +24,6 @@ public class Task17 {
             } else {
                 System.out.print(" ");
             }
-
         }
     }
 
