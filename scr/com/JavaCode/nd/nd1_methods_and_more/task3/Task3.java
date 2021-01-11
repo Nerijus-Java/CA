@@ -6,11 +6,9 @@ public class Task3 {
 
     public static void main(String[] args) {
         int [] numbers = new int[5];
-        numbers[0] = scInt();
-        numbers[1] = scInt();
-        numbers[2] = scInt();
-        numbers[3] = scInt();
-        numbers[4] = scInt();
+        for (int i = 0; i < numbers.length; i++) {
+            numbers[i] = scInt();
+        }
 
         System.out.print("Sum of numbers :" + (numbers[0] + numbers[1] + numbers[2] + numbers[3] + numbers[4]));
         System.out.println();
