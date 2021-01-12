@@ -2,13 +2,13 @@ package com.JavaCode.nd.nd2.nd2_Advance.task17;
 
 public class Task17 {
 
-    public static final char [] ABC = new char[] {
-            'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-    public static final char[] CAESAR_CIPHER = new char[] {
-            'X','Y','Z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W'};
+    public static final char[] ABC = new char[]{
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+            'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
     public static void main(String[] args) {
-        System.out.println(cipher("Hi my name is nerijus", ABC, CAESAR_CIPHER));
+
+        System.out.println(cipher("Hi my name is nerijus", ABC, shift(3)));
 
     }
 
@@ -37,4 +37,26 @@ public class Task17 {
         }
         return count;
     }
+
+    public static char[] shift(int amount) {
+        int count = 0;
+        int countTwo = 0;
+
+        char[] newAbc = new char[ABC.length];
+        int shiftCount = 1;
+
+        for (char c : ABC) {
+            if (count >= amount) {
+                newAbc[countTwo] = c;
+                countTwo++;
+            } else {
+                newAbc[((ABC.length - 1) + shiftCount) - (count + amount)] = c;
+                shiftCount += 2;
+            }
+            count++;
+        }
+        return newAbc;
+    }
+
+
 }
