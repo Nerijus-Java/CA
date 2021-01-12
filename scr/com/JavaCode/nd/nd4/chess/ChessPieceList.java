@@ -1,4 +1,4 @@
-package com.JavaCode.nd.nd4.chess;
+package com.JavaCode.ND.nd4.chess;
 
 public class ChessPieceList {
 

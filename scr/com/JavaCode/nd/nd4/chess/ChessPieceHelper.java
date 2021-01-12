@@ -1,4 +1,4 @@
-package com.JavaCode.nd.nd4.chess;
+package com.JavaCode.ND.nd4.chess;
 
 public class ChessPieceHelper {
 
@@ -61,6 +61,7 @@ public class ChessPieceHelper {
     }
 
     private int stringToNumber(String x) {
+        
         return switch (x.toUpperCase()) {
             case "A" -> 0;
             case "B" -> 1;
@@ -71,6 +72,7 @@ public class ChessPieceHelper {
             case "G" -> 6;
             default -> 7;
         };
+
     }
 
 }
