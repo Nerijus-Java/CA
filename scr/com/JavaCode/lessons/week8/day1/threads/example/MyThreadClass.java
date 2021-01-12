@@ -1,4 +1,4 @@
-package com.JavaCode.lessons.week8.day1.Example;
+package com.JavaCode.lessons.week8.day1.threads.example;
 
 public class MyThreadClass implements Runnable{
 
