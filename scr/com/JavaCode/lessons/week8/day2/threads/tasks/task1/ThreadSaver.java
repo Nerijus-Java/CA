@@ -16,7 +16,7 @@ public class ThreadSaver extends Thread {
     @Override
     public void run() {
         while (counter.getLastValue() != -1) {
-            if (counter.getValue() != lastValue || counter.getValue() == 0) {
+            if (counter.getValue() != 0) {
                 threadSleep();
                 writeFile();
                 lastValue = counter.getValue();

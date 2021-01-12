@@ -8,7 +8,7 @@ public class FileWriter {
     public static final String PATH = "scr/com/JavaCode/lessons/week8/day2/threads/tasks/task1/NumbersEntered";
 
     public void write(int write) {
-        try (BufferedWriter bw = new BufferedWriter(new java.io.FileWriter(PATH, true))) {
+        try (BufferedWriter bw = new BufferedWriter(new java.io.FileWriter(PATH, false))) {
             if (write != 0){
                 bw.write(String.valueOf(write));
                 bw.newLine();
