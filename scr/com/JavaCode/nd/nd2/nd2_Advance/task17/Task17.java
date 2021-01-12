@@ -2,26 +2,28 @@ package com.JavaCode.nd.nd2.nd2_Advance.task17;
 
 public class Task17 {
 
-    public static final String ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    public static final String CAESAR_CIPHER = "XYZABCDEFGHIJKLMNOPQRSTUVW";
+    public static final char [] ABC = new char[] {
+            'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+    public static final char[] CAESAR_CIPHER = new char[] {
+            'X','Y','Z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W'};
 
     public static void main(String[] args) {
+        System.out.println(cipher("Hi my name is nerijus", ABC, CAESAR_CIPHER));
 
-        String input = "Hello";
-
-        cipher(input, ABC.toCharArray(), CAESAR_CIPHER.toCharArray());
     }
 
-    public static void cipher(String input, char[] abc, char[] cipher) {
+    public static String cipher(String input, char[] abc, char[] cipher) {
         char[] charInput = input.toUpperCase().toCharArray();
+        String holder = "";
 
         for (char c : charInput) {
             if (c != ' ') {
-                System.out.print(cipher[getCharNumber(c, abc)]);
+                holder += cipher[getCharNumber(c, abc)];
             } else {
-                System.out.print(" ");
+                holder += " ";
             }
         }
+        return holder;
     }
 
     public static int getCharNumber(char c, char[] charArray) {
