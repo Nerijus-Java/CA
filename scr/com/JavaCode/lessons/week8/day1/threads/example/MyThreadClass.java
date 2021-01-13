@@ -1,6 +1,6 @@
 package com.JavaCode.lessons.week8.day1.threads.example;
 
-public class MyThreadClass implements Runnable{
+public class MyThreadClass extends Thread{
 
     private String threadName;
 
@@ -16,7 +16,6 @@ public class MyThreadClass implements Runnable{
             for (int i = 0; i < count; i ++){
                 System.out.print("*");
             }
-            System.out.print('\n');
         }
         System.out.println("Thread " + threadName + " exiting.");
     }

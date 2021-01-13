@@ -4,7 +4,7 @@ public class ExampleOne {
 
     public static void main(String[] args) {
         MyThreadClass mt = new MyThreadClass("Thread-1");
-        mt.run();
+        mt.start();
 
         for (int i = 0; i < 500; i++) {
             System.out.println("i = " + i + ", i * i = " + i * i);
