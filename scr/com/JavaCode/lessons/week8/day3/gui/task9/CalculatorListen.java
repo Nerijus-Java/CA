@@ -5,7 +5,7 @@ import javax.swing.*;
 public class CalculatorListen {
 
     public static void action(JTextField textField, JTextField textFieldTwo, JLabel label) {
-        int sum = Integer.parseInt(textField.getText()) + Integer.parseInt(textField.getText());
+        int sum = Integer.parseInt(textField.getText()) + Integer.parseInt(textFieldTwo.getText());
         label.setText(String.valueOf(sum));
     }
 }
