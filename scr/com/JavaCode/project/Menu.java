@@ -1,6 +1,6 @@
 package com.JavaCode.project;
 
-public class Menus {
+public class Menu {
 
     public static void mainMenu(){
         System.out.println("_______________");
