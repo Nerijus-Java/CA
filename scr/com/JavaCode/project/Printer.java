@@ -1,6 +1,6 @@
 package com.JavaCode.project;
 
-public class MenuPrinter {
+public class Printer {
 
     public void printAllPaymentsMenu(Payments[] payments){
         for (Payments p : payments){
@@ -11,4 +11,5 @@ public class MenuPrinter {
             );
         }
     }
+
 }
