@@ -2,7 +2,7 @@ package com.JavaCode.project;
 
 public class Menus {
 
-    public void mainMenu(){
+    public static void mainMenu(){
         System.out.println("_______________");
         System.out.println("[1] income");
         System.out.println("[2] costs");
@@ -12,7 +12,7 @@ public class Menus {
         System.out.println("_______________");
     }
 
-    public void incomeMenu(){
+    public static void incomeMenu(){
         System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
         System.out.println("[1] Salary");
         System.out.println("[2] Real estate for rent");
@@ -26,7 +26,7 @@ public class Menus {
         System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
     }
 
-    public void costMenu(){
+    public static void costMenu(){
         System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
         System.out.println("[1] Shop");
         System.out.println("[2] Leasing fees");
@@ -42,11 +42,26 @@ public class Menus {
         System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
     }
 
-    public void amountMenu(){
+    public static void amountMenu(){
         System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
         System.out.print("Enter :" );
     }
 
+    public static void transferToBalance(){
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        System.out.println("Transfer to balance? (1 yes, 2 no)");
+        System.out.print("Enter :" );
+    }
 
+    public static void taxes(){
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        System.out.println("Dose payment have taxes? (1 yes, 2 no)");
+        System.out.print("Enter :" );
+    }
 
+    public static void hidden(){
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        System.out.println("Hidden cost? (1 yes, 2 no)");
+        System.out.print("Enter :" );
+    }
 }
