@@ -26,6 +26,18 @@ public class Menu {
         System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
     }
 
+    public static void getCheckMenu(){
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+        System.out.println("[1] All");
+        System.out.println("[2] Highest income catagory");
+        System.out.println("[3] Lowest income catagory");
+        System.out.println("[4] highest cost catagory");
+        System.out.println("[5] Lowest cost catagory");
+        System.out.println();
+        System.out.println("[-] back");
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+    }
+
     public static void costMenu(){
         System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$");
         System.out.println("[1] Shop");

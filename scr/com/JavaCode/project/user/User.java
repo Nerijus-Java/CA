@@ -1,4 +1,4 @@
-package com.JavaCode.project;
+package com.JavaCode.project.user;
 
 public class User {
     private final String name;

@@ -1,4 +1,6 @@
-package com.JavaCode.project;
+package com.JavaCode.project.Payments;
+
+import com.JavaCode.project.catagory.Catagory;
 
 import java.util.Date;
 
@@ -11,14 +13,14 @@ public class PaymentCollection {
         this.payments = new Payments[0];
     }
 
-    public void addIncome(String catagory, int amount, boolean transfer, boolean taxes) {
+    public void addIncome(Catagory catagory, int amount, boolean transfer, boolean taxes) {
         addMoreRoom();
 
         Payments newPayment = new Payments(catagory, amount, new Date(), transfer, taxes, true, false);
         payments[payments.length - 1] = newPayment;
     }
 
-    public void addCosts(String catagory, int amount, boolean hidden) {
+    public void addCosts(Catagory catagory, int amount, boolean hidden) {
         addMoreRoom();
 
         Payments newPayments = new Payments(catagory, amount, new Date(), true, false, false, hidden);
@@ -40,5 +42,9 @@ public class PaymentCollection {
 
     public void print() {
         printer.printAllPaymentsMenu(payments);
+    }
+
+    public Payments[] getPayments() {
+        return payments;
     }
 }

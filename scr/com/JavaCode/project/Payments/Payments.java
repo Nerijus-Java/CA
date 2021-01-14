@@ -1,4 +1,6 @@
-package com.JavaCode.project;
+package com.JavaCode.project.Payments;
+
+import com.JavaCode.project.catagory.Catagory;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -7,7 +9,7 @@ public class Payments {
 
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
 
-    private String catagory;
+    private Catagory catagory;
     private Integer amount;
     private Date date;
 
@@ -16,7 +18,7 @@ public class Payments {
     private Boolean incomeOrCost;
     private Boolean hiddenCost;
 
-    public Payments(String catagory, Integer amount, Date date, Boolean transferToBalance, Boolean hasTaxes, Boolean incomeOrCost, Boolean hiddenCost) {
+    public Payments(Catagory catagory, Integer amount, Date date, Boolean transferToBalance, Boolean hasTaxes, Boolean incomeOrCost, Boolean hiddenCost) {
         this.catagory = catagory;
         this.amount = amount;
         this.date = date;
@@ -37,11 +39,7 @@ public class Payments {
                 "HiddenCost :" + hiddenCost + '\n';
     }
 
-    public static SimpleDateFormat getDateFormat() {
-        return DATE_FORMAT;
-    }
-
-    public String getCatagory() {
+    public Catagory getCatagory() {
         return catagory;
     }
 
