@@ -45,6 +45,8 @@ public class Program {
     private JComboBox costChoose;
     private JButton reloadButton;
     private JTextArea checkTextArea;
+    private JButton mostButton;
+    private JPanel mostPanel;
 
     //Helpers and other classes
     private PaymentCollection payments;
@@ -91,6 +93,18 @@ public class Program {
                 }
             }
         });
+        mostButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mostPanel.setVisible(true);
+                incomesPanel.setVisible(false);
+                costsPanel.setVisible(false);
+                balancePanel.setVisible(false);
+                getCheckPanel.setVisible(false);
+
+            }
+        });
+
     }
 
     private void startingVisibility() {
@@ -98,6 +112,7 @@ public class Program {
         costsPanel.setVisible(false);
         balancePanel.setVisible(false);
         getCheckPanel.setVisible(false);
+        mostPanel.setVisible(false);
     }
 
     private void makeListenersForToolBar() {
@@ -106,6 +121,7 @@ public class Program {
             costsPanel.setVisible(true);
             balancePanel.setVisible(false);
             getCheckPanel.setVisible(false);
+            mostPanel.setVisible(false);
         });
 
         buttonIncome.addActionListener(e -> {
@@ -113,6 +129,7 @@ public class Program {
             costsPanel.setVisible(false);
             balancePanel.setVisible(false);
             getCheckPanel.setVisible(false);
+            mostPanel.setVisible(false);
         });
 
         buttonBalance.addActionListener(e -> {
@@ -121,6 +138,7 @@ public class Program {
             costsPanel.setVisible(false);
             balancePanel.setVisible(true);
             getCheckPanel.setVisible(false);
+            mostPanel.setVisible(false);
         });
 
         getCheckButton.addActionListener(e -> {
@@ -128,6 +146,7 @@ public class Program {
             costsPanel.setVisible(false);
             balancePanel.setVisible(false);
             getCheckPanel.setVisible(true);
+            mostPanel.setVisible(false);
         });
 
         addButtonIncome.addActionListener(e -> {
@@ -141,8 +160,7 @@ public class Program {
 
         addButtonCosts.addActionListener(e -> {
             if ( amountTextFieldCost.getText() != null && !amountTextFieldCost.getText().equals("Amount")){
-                int number = Integer.parseInt(amountBoxIncome.getText());
-                loggedInUser.setBalance(loggedInUser.getBalance() - number);
+                loggedInUser.setBalance(loggedInUser.getBalance() - Integer.parseInt(amountTextFieldCost.getText()));
                 payments.addCosts(catagoryHelper.getCatagory(costChoose.getSelectedIndex() + 7),
                         Integer.parseInt(amountTextFieldCost.getText()),hiddenCheckBox.isSelected());
             }

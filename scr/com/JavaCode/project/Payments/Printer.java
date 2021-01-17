@@ -52,7 +52,7 @@ public class Printer {
 
     public String printIncomesPayment(Payments[] payments){
         StringBuilder holder = new StringBuilder();
-        String spaces = "---------------------------------------";
+        String spaces = "------------------------------";
 
         for (Payments p : payments){
             if (p.getIncomeOrCost()){
@@ -79,7 +79,6 @@ public class Printer {
         String spaces = "---------------------------------------";
 
         for (Payments p : payments){
-
             if (!p.getHiddenCost() && p.getDate().getMonth() == date.getMonth()){
                 holder.append(String.format("Date :%-30s%-50sCatagory:%-30s%-50sAmount :%-30s%-50sTransfer :%-30b%-50sTaxes :%-20b%-50s Income:%b|\n",
                         Payments.DATE_FORMAT.format(p.getDate()),
