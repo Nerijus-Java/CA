@@ -58,4 +58,8 @@ public class CatagoryHelper {
         }
         return catagoryMax;
     }
+
+    public CatagoryCollection getCatagoryCollection() {
+        return catagoryCollection;
+    }
 }

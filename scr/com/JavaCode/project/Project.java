@@ -1,6 +1,7 @@
 package com.JavaCode.project;
 
 import com.JavaCode.project.Payments.PaymentCollection;
+import com.JavaCode.project.Payments.PaymentsFileReader;
 import com.JavaCode.project.catagory.CatagoryHelper;
 import com.JavaCode.project.user.User;
 
@@ -11,8 +12,13 @@ public class Project {
     public static void main(String[] args) {
         String userInput = "";
         Scanner sc = new Scanner(System.in);
+        MainFrame mainFrame = new MainFrame();
         PaymentCollection payments = new PaymentCollection();
         CatagoryHelper catagoryHelper = new CatagoryHelper();
+        PaymentsFileReader paymentsFileReader = new PaymentsFileReader(payments,catagoryHelper);
+
+        mainFrame.show();
+        paymentsFileReader.readFile();
 
         User user = new User("Nerijus");
         System.out.println("***************");
@@ -186,7 +192,7 @@ public class Project {
         catagoryHelper.getCatagory(catNumber).setAmount(loggedInUser.getBalance() - amount);
         loggedInUser.setBalance(loggedInUser.getBalance() - amount);
 
-        payments.addCosts(catagoryHelper.getCatagory(catNumber), amount, trueOrFalse(inputOne));
+        payments.addCosts(catagoryHelper.getCatagory(catNumber), -amount, trueOrFalse(inputOne));
     }
 
 

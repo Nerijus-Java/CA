@@ -22,6 +22,14 @@ public class PaymentCollection {
         payments[payments.length - 1] = newPayment;
     }
 
+    public void addOldIncome(Catagory catagory, int amount, Date date, boolean transfer, boolean taxes){
+        addMoreRoom();
+
+        Payments newPayment = new Payments(catagory, amount, date, transfer, taxes, true, false);
+        payments[payments.length - 1] = newPayment;
+    }
+
+
     public void addCosts(Catagory catagory, int amount, boolean hidden) {
         addMoreRoom();
 
@@ -30,6 +38,14 @@ public class PaymentCollection {
         payments[payments.length - 1] = newPayment;
 
     }
+
+    public void addOldCost(Catagory catagory, int amount,Date date, boolean hidden){
+        addMoreRoom();
+
+        Payments newPayment = new Payments(catagory, amount, date, true, false, false, hidden);
+        payments[payments.length - 1] = newPayment;
+    }
+
 
     private void addMoreRoom() {
         Payments[] newPayments = new Payments[payments.length + 1];
