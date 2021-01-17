@@ -44,7 +44,7 @@ public class Program {
     private JComboBox checkPrintChoose;
     private JComboBox costChoose;
     private JButton reloadButton;
-    private JTable checksTable;
+    private JTextArea checkTextArea;
 
     //Helpers and other classes
     private PaymentCollection payments;
@@ -63,11 +63,32 @@ public class Program {
         this.loggedInUser = user;
         this.printer = new Printer();
 
-        getCheckButton.addActionListener(new ActionListener() {
-
+        getCheckButton.addActionListener(e -> {
+            System.out.println(printer.printAllPaymentsMenu(payments.getPayments()));
+            checkTextArea.setText(printer.printAllPaymentsMenu(payments.getPayments()));
+        });
+        reloadButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                int num = checkPrintChoose.getSelectedIndex();
 
+                switch (num){
+                    case 0:
+                        checkTextArea.setText(printer.printAllPaymentsMenu(payments.getPayments()));
+                        break;
+                    case 1:
+                        checkTextArea.setText(printer.printPaymentFromThisMonth(payments.getPayments()));
+                        break;
+                    case 2:
+                        checkTextArea.setText(printer.printPaymentFromThisYear(payments.getPayments()));
+                        break;
+                    case 3:
+
+                        break;
+                    case 4:
+                        checkTextArea.setText(printer.printCostPayment(payments.getPayments()));
+                        break;
+                }
             }
         });
     }
@@ -111,7 +132,8 @@ public class Program {
 
         addButtonIncome.addActionListener(e -> {
             if (amountBoxIncome.getText() != null && !amountBoxIncome.getText().equals("Amount")){
-                payments.addIncome(catagoryHelper.getCatagory(costChoose.getSelectedIndex()) ,
+                loggedInUser.setBalance(loggedInUser.getBalance() + Integer.parseInt(amountBoxIncome.getText()));
+                payments.addIncome(catagoryHelper.getCatagory(incomeChoose.getSelectedIndex()) ,
                         Integer.parseInt(amountBoxIncome.getText())
                         ,transferToBalanceCheckBoxIncome.isSelected(),taxesCheckBoxIncome.isSelected());
             }
@@ -119,7 +141,8 @@ public class Program {
 
         addButtonCosts.addActionListener(e -> {
             if ( amountTextFieldCost.getText() != null && !amountTextFieldCost.getText().equals("Amount")){
-                payments.addCosts(catagoryHelper.getCatagory(costChoose.getSelectedIndex()),
+                loggedInUser.setBalance(loggedInUser.getBalance() - Integer.parseInt(amountBoxIncome.getText()));
+                payments.addCosts(catagoryHelper.getCatagory(costChoose.getSelectedIndex() + 7),
                         Integer.parseInt(amountTextFieldCost.getText()),hiddenCheckBox.isSelected());
             }
         });

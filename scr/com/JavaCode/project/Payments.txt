@@ -4,3 +4,6 @@ Benefit,0,50050,17-1-2021 07:04:09,true,true,true,false
 Salary,0,500,17-1-2021 07:57:07,true,false,true,false
 Salary,0,600,17-1-2021 08:00:09,true,true,true,false
 Real estate for rent,500,7000,17-1-2021 08:00:15,true,false,false,false
+Salary,0,1000,17-1-2021 10:16:16,true,true,true,false
+Salary,0,200,17-1-2021 10:16:28,true,false,false,false
+Shop,0,20,17-1-2021 10:16:42,true,false,false,false

@@ -2,6 +2,7 @@ package com.JavaCode.project.Payments;
 
 import com.JavaCode.project.catagory.Catagory;
 import com.JavaCode.project.catagory.CatagoryHelper;
+import com.JavaCode.project.user.User;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -17,10 +18,12 @@ public class PaymentsFileReader {
     SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
     PaymentCollection paymentCollection;
     CatagoryHelper catagoryCollection;
+    User user ;
 
-    public PaymentsFileReader(PaymentCollection paymentCollection, CatagoryHelper catagoryCollection) {
+    public PaymentsFileReader(PaymentCollection paymentCollection, CatagoryHelper catagoryCollection, User loggedInUser) {
         this.paymentCollection = paymentCollection;
         this.catagoryCollection = catagoryCollection;
+        this.user = loggedInUser;
     }
 
     public void readFile(){
@@ -58,6 +61,7 @@ public class PaymentsFileReader {
         if (paymentDetails[6].equals("true")) {
             Date date = new SimpleDateFormat("dd-M-yyyy hh:mm:ss").parse(paymentDetails[3]);
             Catagory catagory = setGetCatagory(paymentDetails[0], Integer.parseInt(paymentDetails[1]));
+
 
             paymentCollection.addOldIncome(catagory, Integer.parseInt(paymentDetails[2]), date,
                     getTrueOrFalse(paymentDetails[4]), getTrueOrFalse(paymentDetails[5]));

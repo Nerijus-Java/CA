@@ -14,8 +14,9 @@ public class Project {
 
         PaymentCollection payments = new PaymentCollection();
         CatagoryHelper catagoryHelper = new CatagoryHelper();
-        PaymentsFileReader paymentsFileReader = new PaymentsFileReader(payments,catagoryHelper);
         User loggedInUser = new User("Nerijus");
+        PaymentsFileReader paymentsFileReader = new PaymentsFileReader(payments,catagoryHelper,loggedInUser);
+
 
         paymentsFileReader.readFile();
 
