@@ -1,1 +1,3 @@
 Real estate for rent,500,500,17-1-2021 04:00:21,true,true,true,false
+Scholarship,0,600,17-1-2021 06:03:22,true,false,true,false
+Benefit,0,50050,17-1-2021 07:04:09,true,true,true,false

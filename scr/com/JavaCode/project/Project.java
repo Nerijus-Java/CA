@@ -15,12 +15,9 @@ public class Project {
         String userInput = "";
         Scanner sc = new Scanner(System.in);
 
-
-
         PaymentCollection payments = new PaymentCollection();
         CatagoryHelper catagoryHelper = new CatagoryHelper();
         PaymentsFileReader paymentsFileReader = new PaymentsFileReader(payments,catagoryHelper);
-
 
         paymentsFileReader.readFile();
 
@@ -47,7 +44,6 @@ public class Project {
                 while (!userInput.equals("-")) {
                     Menu.incomeMenu();
                     userInput = sc.nextLine();
-                    incomeSwitch(userInput, loggedInUser, payments, catagoryHelper);
                 }
                 break;
             case "2":
@@ -103,33 +99,6 @@ public class Project {
         }
     }
 
-    public static void incomeSwitch(String userInput, User loggedInUser, PaymentCollection payments, CatagoryHelper catagoryHelper) {
-        switch (userInput) {
-            case "1":
-                askUserIncome(loggedInUser, payments, catagoryHelper,0);
-                break;
-            case "2":
-                askUserIncome(loggedInUser, payments, catagoryHelper,1);
-                break;
-            case "3":
-                askUserIncome(loggedInUser, payments, catagoryHelper,2);
-                break;
-            case "4":
-                askUserIncome(loggedInUser, payments, catagoryHelper,3);
-                break;
-            case "5":
-                askUserIncome(loggedInUser, payments, catagoryHelper,4);
-                break;
-            case "6":
-                askUserIncome(loggedInUser, payments, catagoryHelper,5);
-                break;
-            case "7":
-                askUserIncome(loggedInUser, payments, catagoryHelper,6);
-                break;
-            case "-":
-                break;
-        }
-    }
 
     public static void costSwitch(String userInput, User loggedInUser, PaymentCollection payments, CatagoryHelper catagoryHelper) {
         switch (userInput) {
@@ -183,7 +152,6 @@ public class Project {
             catagoryHelper.getCatagory(catNumber).setAmount(loggedInUser.getBalance() + amount);
             loggedInUser.setBalance(loggedInUser.getBalance() + amount);
         }
-        payments.addIncome(catagoryHelper.getCatagory(catNumber), amount, trueOrFalse(inputOne), trueOrFalse(inputTwo));
     }
 
     private static void askUserCosts(User loggedInUser, PaymentCollection payments, CatagoryHelper catagoryHelper, int catNumber ) {

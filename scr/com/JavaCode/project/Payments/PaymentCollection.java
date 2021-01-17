@@ -17,7 +17,9 @@ public class PaymentCollection {
     public void addIncome(Catagory catagory, int amount, boolean transfer, boolean taxes) {
         addMoreRoom();
 
-        Payments newPayment = new Payments(catagory, amount, new Date(), transfer, taxes, true, false);
+        Payments newPayment = new Payments(catagory, amount, new Date()
+                , transfer, taxes, true, false);
+
         paymentsFileWriter.writeOnePaymentToFileWriter(newPayment);
         payments[payments.length - 1] = newPayment;
     }

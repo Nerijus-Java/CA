@@ -5,22 +5,24 @@ import com.JavaCode.project.Payments.PaymentsFileReader;
 import com.JavaCode.project.catagory.CatagoryHelper;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Program {
 
-    private JButton buttonIncome;
+    //Main
     private JPanel mainPanel;
-    private JButton buttonCosts;
-    private JButton buttonBalance;
     private JButton getCheckButton;
+    //Income
     private JPanel incomesPanel;
+    private JButton buttonIncome;
     private JCheckBox taxesCheckBoxIncome;
     private JCheckBox transferToBalanceCheckBoxIncome;
     private JComboBox incomeChoose;
     private JTextField amountBoxIncome;
     private JButton addButtonIncome;
+
+
+    private JButton buttonCosts;
+    private JButton buttonBalance;
     private JButton addButtonCosts;
     private JComboBox comboBox2;
     private JPanel costsPanel;
@@ -34,9 +36,11 @@ public class Program {
     private JComboBox checkPrintChoose;
     private JLabel Checks;
 
+    //Helpers and other classes
     private PaymentCollection payments;
     private CatagoryHelper catagoryHelper;
     private PaymentsFileReader paymentsFileReader;
+    private JPanelHelper jPanelHelper;
 
 
     public Program(PaymentCollection payments, CatagoryHelper catagoryHelper, PaymentsFileReader paymentsFileReader) {
@@ -46,13 +50,8 @@ public class Program {
 
     }
 
-    private void addButtonIncomeListerners(){
-        addButtonIncome.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+    private void makeIncomeChoose(){
 
-            }
-        });
     }
 
     private void startingVisibility() {
@@ -89,6 +88,15 @@ public class Program {
             costsPanel.setVisible(false);
             balancePanel.setVisible(false);
             getCheckPanel.setVisible(true);
+        });
+
+        addButtonIncome.addActionListener(e -> {
+            if ( amountBoxIncome.getText() != null && amountBoxIncome.getText() != "Amount"){
+                payments.addIncome(catagoryHelper.getCatagory(incomeChoose.getSelectedIndex()),
+                        Integer.parseInt(amountBoxIncome.getText())
+                        ,transferToBalanceCheckBoxIncome.isSelected()
+                        ,taxesCheckBoxIncome.isSelected());
+            }
         });
     }
 
