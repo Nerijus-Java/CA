@@ -3,8 +3,10 @@ package com.JavaCode.project;
 import com.JavaCode.project.Payments.PaymentCollection;
 import com.JavaCode.project.Payments.PaymentsFileReader;
 import com.JavaCode.project.catagory.CatagoryHelper;
+import com.JavaCode.project.jframes.Program;
 import com.JavaCode.project.user.User;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class Project {
@@ -12,13 +14,17 @@ public class Project {
     public static void main(String[] args) {
         String userInput = "";
         Scanner sc = new Scanner(System.in);
-        MainFrame mainFrame = new MainFrame();
+
+
+
         PaymentCollection payments = new PaymentCollection();
         CatagoryHelper catagoryHelper = new CatagoryHelper();
         PaymentsFileReader paymentsFileReader = new PaymentsFileReader(payments,catagoryHelper);
 
-        mainFrame.show();
+
         paymentsFileReader.readFile();
+
+        setUpMainFrame(payments,catagoryHelper,paymentsFileReader);
 
         User user = new User("Nerijus");
         System.out.println("***************");
@@ -199,5 +205,15 @@ public class Project {
     //Regular Methods
     private static boolean trueOrFalse(int i) {
         return i == 1;
+    }
+
+    public static void setUpMainFrame(PaymentCollection payments, CatagoryHelper catagoryHelper,PaymentsFileReader paymentsFileReader){
+
+        JFrame mainFrame = new JFrame("Income and Costs");
+        mainFrame.setContentPane(new Program(payments,catagoryHelper,paymentsFileReader).getMainPanel());
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        mainFrame.pack();
+        mainFrame.setVisible(true);
+
     }
 }
