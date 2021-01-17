@@ -50,6 +50,29 @@ public class Printer {
         return holder.toString();
     }
 
+    public String printIncomesPayment(Payments[] payments){
+        StringBuilder holder = new StringBuilder();
+        String spaces = "---------------------------------------";
+
+        for (Payments p : payments){
+            if (p.getIncomeOrCost()){
+                holder.append(String.format("Date :%-30s%-50sCatagory:%-30s%-50sAmount :%-30s%-50sTransfer :%-30b%-50sTaxes :%-20b%-50s Income:%b|\n",
+                        Payments.DATE_FORMAT.format(p.getDate()),
+                        spaces,
+                        p.getCatagory().getName(),
+                        spaces,
+                        p.getAmount(),
+                        spaces
+                        , p.getTransferToBalance(),
+                        spaces,
+                        p.getHasTaxes(),
+                        spaces,
+                        p.getIncomeOrCost()));
+            }
+        }
+        return holder.toString();
+    }
+
     public String printPaymentFromThisMonth(Payments[] payments){
         Date date = new Date();
         StringBuilder holder = new StringBuilder();

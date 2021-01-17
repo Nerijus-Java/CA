@@ -83,7 +83,7 @@ public class Program {
                         checkTextArea.setText(printer.printPaymentFromThisYear(payments.getPayments()));
                         break;
                     case 3:
-
+                        checkTextArea.setText(printer.printIncomesPayment(payments.getPayments()));
                         break;
                     case 4:
                         checkTextArea.setText(printer.printCostPayment(payments.getPayments()));
@@ -141,7 +141,8 @@ public class Program {
 
         addButtonCosts.addActionListener(e -> {
             if ( amountTextFieldCost.getText() != null && !amountTextFieldCost.getText().equals("Amount")){
-                loggedInUser.setBalance(loggedInUser.getBalance() - Integer.parseInt(amountBoxIncome.getText()));
+                int number = Integer.parseInt(amountBoxIncome.getText());
+                loggedInUser.setBalance(loggedInUser.getBalance() - number);
                 payments.addCosts(catagoryHelper.getCatagory(costChoose.getSelectedIndex() + 7),
                         Integer.parseInt(amountTextFieldCost.getText()),hiddenCheckBox.isSelected());
             }

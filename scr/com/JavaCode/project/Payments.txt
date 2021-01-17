@@ -7,3 +7,10 @@ Real estate for rent,500,7000,17-1-2021 08:00:15,true,false,false,false
 Salary,0,1000,17-1-2021 10:16:16,true,true,true,false
 Salary,0,200,17-1-2021 10:16:28,true,false,false,false
 Shop,0,20,17-1-2021 10:16:42,true,false,false,false
+Real estate for rent,500,500,17-1-2021 10:23:08,true,false,true,false
+Housing taxes,0,500,17-1-2021 10:23:51,true,false,false,false
+Real estate for rent,500,500,17-1-2021 10:23:55,true,false,true,false
+Real estate for rent,500,500,17-1-2021 10:23:57,true,false,true,false
+Real estate for rent,500,500,17-1-2021 10:23:58,true,false,true,false
+Housing taxes,0,500,17-1-2021 10:24:00,true,false,false,false
+Housing taxes,0,500,17-1-2021 10:24:00,true,false,false,false
