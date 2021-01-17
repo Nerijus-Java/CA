@@ -1,7 +1,10 @@
 package com.JavaCode.project.catagory;
 
 public class CatagoryHelper {
-    private final CatagoryCollection catagoryCollection = new CatagoryCollection();
+    private static final CatagoryCollection catagoryCollection = new CatagoryCollection();
+
+    public CatagoryHelper() {
+    }
 
     public Catagory getCatagory(int i){
         return catagoryCollection.getCatagory()[i];
@@ -9,7 +12,6 @@ public class CatagoryHelper {
 
     public Catagory getHighestIncomeCatagory(){
         int max = Integer.MIN_VALUE;
-
         Catagory catagoryMax = new Catagory("None",true,1);
         for (Catagory c : catagoryCollection.catagory){
             if (c.getAmount() > max && c.isIncome() && c.getAmount() != 0){

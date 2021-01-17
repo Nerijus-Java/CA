@@ -1,14 +1,15 @@
 package com.JavaCode.project.Payments;
 
 import com.JavaCode.project.catagory.Catagory;
+import com.JavaCode.project.catagory.CatagoryHelper;
 
 import java.util.Date;
 
 public class PaymentCollection {
 
     private Payments[] payments;
-    private Printer printer = new Printer();
     private PaymentsFileWriter paymentsFileWriter = new PaymentsFileWriter();
+    private CatagoryHelper catagoryHelper = new CatagoryHelper();
 
     public PaymentCollection() {
         this.payments = new Payments[0];
@@ -17,9 +18,8 @@ public class PaymentCollection {
     public void addIncome(Catagory catagory, int amount, boolean transfer, boolean taxes) {
         addMoreRoom();
 
-        Payments newPayment = new Payments(catagory, amount, new Date()
+        Payments newPayment = new Payments( catagory, amount, new Date()
                 , transfer, taxes, true, false);
-
         paymentsFileWriter.writeOnePaymentToFileWriter(newPayment);
         payments[payments.length - 1] = newPayment;
     }
@@ -27,7 +27,8 @@ public class PaymentCollection {
     public void addOldIncome(Catagory catagory, int amount, Date date, boolean transfer, boolean taxes){
         addMoreRoom();
 
-        Payments newPayment = new Payments(catagory, amount, date, transfer, taxes, true, false);
+        Payments newPayment = new Payments(catagory, amount, date, transfer, taxes
+                , true, false);
         payments[payments.length - 1] = newPayment;
     }
 
@@ -59,10 +60,6 @@ public class PaymentCollection {
         }
 
         this.payments = newPayments;
-    }
-
-    public void print() {
-        printer.printAllPaymentsMenu(payments);
     }
 
     public Payments[] getPayments() {

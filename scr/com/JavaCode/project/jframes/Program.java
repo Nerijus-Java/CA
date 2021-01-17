@@ -2,15 +2,20 @@ package com.JavaCode.project.jframes;
 
 import com.JavaCode.project.Payments.PaymentCollection;
 import com.JavaCode.project.Payments.PaymentsFileReader;
+import com.JavaCode.project.Payments.Printer;
 import com.JavaCode.project.catagory.CatagoryHelper;
+import com.JavaCode.project.user.User;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Program {
 
     //Main
     private JPanel mainPanel;
     private JButton getCheckButton;
+
     //Income
     private JPanel incomesPanel;
     private JButton buttonIncome;
@@ -20,38 +25,51 @@ public class Program {
     private JTextField amountBoxIncome;
     private JButton addButtonIncome;
 
-
-    private JButton buttonCosts;
-    private JButton buttonBalance;
-    private JButton addButtonCosts;
-    private JComboBox comboBox2;
+    //Costs
     private JPanel costsPanel;
+    private JButton buttonCosts;
+    private JButton addButtonCosts;
+    private JTextField amountTextFieldCost;
     private JCheckBox hiddenCheckBox;
+
+    //Balance
     private JTextField amountTextField;
+    private JButton buttonBalance;
     private JPanel balancePanel;
-    private JTextField amountTextField1;
+
+    //checks
     private JPanel getCheckPanel;
     private JButton saveButtonCheck;
-    private JButton openFileButtoncheck;
+    private JButton openFileButtonCheck;
     private JComboBox checkPrintChoose;
-    private JLabel Checks;
+    private JComboBox costChoose;
+    private JButton reloadButton;
+    private JTable checksTable;
 
     //Helpers and other classes
     private PaymentCollection payments;
     private CatagoryHelper catagoryHelper;
     private PaymentsFileReader paymentsFileReader;
-    private JPanelHelper jPanelHelper;
+    private User loggedInUser;
+    private Printer printer;
 
-
-    public Program(PaymentCollection payments, CatagoryHelper catagoryHelper, PaymentsFileReader paymentsFileReader) {
+    public Program(PaymentCollection payments, CatagoryHelper catagoryHelper, PaymentsFileReader paymentsFileReader, User user) {
         startingVisibility();
         makeListenersForToolBar();
 
+        this.payments = payments;
+        this.catagoryHelper = catagoryHelper;
+        this.paymentsFileReader = paymentsFileReader;
+        this.loggedInUser = user;
+        this.printer = new Printer();
 
-    }
+        getCheckButton.addActionListener(new ActionListener() {
 
-    private void makeIncomeChoose(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+            }
+        });
     }
 
     private void startingVisibility() {
@@ -77,6 +95,7 @@ public class Program {
         });
 
         buttonBalance.addActionListener(e -> {
+            amountTextField.setText(loggedInUser.getBalance() + "");
             incomesPanel.setVisible(false);
             costsPanel.setVisible(false);
             balancePanel.setVisible(true);
@@ -91,11 +110,17 @@ public class Program {
         });
 
         addButtonIncome.addActionListener(e -> {
-            if ( amountBoxIncome.getText() != null && amountBoxIncome.getText() != "Amount"){
-                payments.addIncome(catagoryHelper.getCatagory(incomeChoose.getSelectedIndex()),
+            if (amountBoxIncome.getText() != null && !amountBoxIncome.getText().equals("Amount")){
+                payments.addIncome(catagoryHelper.getCatagory(costChoose.getSelectedIndex()) ,
                         Integer.parseInt(amountBoxIncome.getText())
-                        ,transferToBalanceCheckBoxIncome.isSelected()
-                        ,taxesCheckBoxIncome.isSelected());
+                        ,transferToBalanceCheckBoxIncome.isSelected(),taxesCheckBoxIncome.isSelected());
+            }
+        });
+
+        addButtonCosts.addActionListener(e -> {
+            if ( amountTextFieldCost.getText() != null && !amountTextFieldCost.getText().equals("Amount")){
+                payments.addCosts(catagoryHelper.getCatagory(costChoose.getSelectedIndex()),
+                        Integer.parseInt(amountTextFieldCost.getText()),hiddenCheckBox.isSelected());
             }
         });
     }
@@ -104,7 +129,4 @@ public class Program {
         return mainPanel;
     }
 
-    public void setIncomesPanel(JPanel incomesPanel) {
-        this.incomesPanel = incomesPanel;
-    }
 }
