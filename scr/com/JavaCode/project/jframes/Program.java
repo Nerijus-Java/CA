@@ -47,10 +47,10 @@ public class Program {
     private JButton exportButton1;
     private JButton exportButtonToolBar;
     private JPanel exportPanel;
-    private JLabel mostSpentCostsLablel;
+    private JLabel mostSpentCostsLabel;
     private JLabel leastSpentCost;
     private JLabel mostGotIncome;
-    private JLabel leastGotIncom;
+    private JLabel leastGotIncome;
 
     //Helpers and other classes
     private final PaymentCollection payments;
@@ -72,6 +72,7 @@ public class Program {
     }
 
     private void buttonListeners(PaymentCollection payments, PaymentsFileWriter paymentsFileWriter) {
+
         getCheckButton.addActionListener(e -> {
             System.out.println(printer.printAllPaymentsMenu(payments.getPayments()));
             checkTextArea.setText(printer.printAllPaymentsMenu(payments.getPayments()));
@@ -109,6 +110,7 @@ public class Program {
         balancePanel.setVisible(false);
         getCheckPanel.setVisible(false);
         mostPanel.setVisible(false);
+        exportPanel.setVisible(false);
     }
 
     private void makeListenersForToolBar() {
@@ -129,11 +131,17 @@ public class Program {
             balancePanel.setVisible(false);
             getCheckPanel.setVisible(false);
             exportPanel.setVisible(false);
-            mostSpentCostsLablel.setText(catagoryHelper.getMostCostCatagory().getName() + " amount:" + catagoryHelper.getMostCostCatagory().getAmount());
-            leastSpentCost.setText(catagoryHelper.getLowestCostCatagory().getName() + " amount:" + catagoryHelper.getLowestCostCatagory().getAmount());
-            mostGotIncome.setText(catagoryHelper.getHighestIncomeCatagory().getName() + " amount:" + catagoryHelper.getHighestIncomeCatagory().getAmount());
-            leastGotIncom.setText(catagoryHelper.getLowestIncomeCatagory().getName() + " amount:" + catagoryHelper.getLowestIncomeCatagory().getAmount());
+
+            mostSpentCostsLabel.setText(catagoryHelper.getMostCostCatagory().getName() +
+                    "   amount: " + catagoryHelper.getMostCostCatagory().getAmount());
+            leastSpentCost.setText(catagoryHelper.getLowestCostCatagory().getName() +
+                    "   amount: " + catagoryHelper.getLowestCostCatagory().getAmount());
+            mostGotIncome.setText(catagoryHelper.getHighestIncomeCatagory().getName() +
+                    "   amount: " + catagoryHelper.getHighestIncomeCatagory().getAmount());
+            leastGotIncome.setText(catagoryHelper.getLowestIncomeCatagory().getName() +
+                    "   amount: " + catagoryHelper.getLowestIncomeCatagory().getAmount());
         });
+
         buttonCosts.addActionListener(e -> {
             incomesPanel.setVisible(false);
             costsPanel.setVisible(true);
@@ -174,6 +182,11 @@ public class Program {
         addButtonIncome.addActionListener(e -> {
             if (amountBoxIncome.getText() != null && !amountBoxIncome.getText().equals("Amount")){
                 loggedInUser.setBalance(loggedInUser.getBalance() + Integer.parseInt(amountBoxIncome.getText()));
+
+                catagoryHelper.getCatagory(incomeChoose.getSelectedIndex())
+                        .setAmount(catagoryHelper.getCatagory(incomeChoose.getSelectedIndex())
+                                .getAmount() - Integer.parseInt(amountBoxIncome.getText()) );
+
                 payments.addIncome(catagoryHelper.getCatagory(incomeChoose.getSelectedIndex()) ,
                         Integer.parseInt(amountBoxIncome.getText())
                         ,transferToBalanceCheckBoxIncome.isSelected(),taxesCheckBoxIncome.isSelected());
@@ -182,7 +195,12 @@ public class Program {
 
         addButtonCosts.addActionListener(e -> {
             if ( amountTextFieldCost.getText() != null && !amountTextFieldCost.getText().equals("Amount")){
+
                 loggedInUser.setBalance(loggedInUser.getBalance() - Integer.parseInt(amountTextFieldCost.getText()));
+                catagoryHelper.getCatagory(costChoose.getSelectedIndex() + 7)
+                        .setAmount(catagoryHelper.getCatagory(costChoose.getSelectedIndex() + 7)
+                                .getAmount() - Integer.parseInt(amountTextFieldCost.getText()) );
+
                 payments.addCosts(catagoryHelper.getCatagory(costChoose.getSelectedIndex() + 7),
                         Integer.parseInt(amountTextFieldCost.getText()),hiddenCheckBox.isSelected());
             }
