@@ -1,0 +1,1 @@
+Scholarship,-5000,5000,18-1-2021 09:51:23,true,false,true,false
