@@ -1,14 +1,12 @@
 package com.JavaCode.project.jframes;
 
 import com.JavaCode.project.Payments.PaymentCollection;
-import com.JavaCode.project.Payments.PaymentsFileReader;
+import com.JavaCode.project.Payments.PaymentsFileWriter;
 import com.JavaCode.project.Payments.Printer;
 import com.JavaCode.project.catagory.CatagoryHelper;
 import com.JavaCode.project.user.User;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Program {
 
@@ -39,72 +37,70 @@ public class Program {
 
     //checks
     private JPanel getCheckPanel;
-    private JButton saveButtonCheck;
-    private JButton openFileButtonCheck;
     private JComboBox checkPrintChoose;
     private JComboBox costChoose;
     private JButton reloadButton;
     private JTextArea checkTextArea;
     private JButton mostButton;
     private JPanel mostPanel;
+    private JTextField pathTextField;
+    private JButton exportButton1;
+    private JButton exportButtonToolBar;
+    private JPanel exportPanel;
+    private JLabel mostSpentCostsLablel;
+    private JLabel leastSpentCost;
+    private JLabel mostGotIncome;
+    private JLabel leastGotIncom;
 
     //Helpers and other classes
-    private PaymentCollection payments;
-    private CatagoryHelper catagoryHelper;
-    private PaymentsFileReader paymentsFileReader;
-    private User loggedInUser;
-    private Printer printer;
+    private final PaymentCollection payments;
+    private final CatagoryHelper catagoryHelper;
+    private final User loggedInUser;
+    private final Printer printer;
 
-    public Program(PaymentCollection payments, CatagoryHelper catagoryHelper, PaymentsFileReader paymentsFileReader, User user) {
+    public Program(PaymentCollection payments, CatagoryHelper catagoryHelper, PaymentsFileWriter paymentsFileWriter, User user) {
         startingVisibility();
         makeListenersForToolBar();
+        buttonListeners(payments, paymentsFileWriter);
 
         this.payments = payments;
         this.catagoryHelper = catagoryHelper;
-        this.paymentsFileReader = paymentsFileReader;
         this.loggedInUser = user;
         this.printer = new Printer();
 
+
+    }
+
+    private void buttonListeners(PaymentCollection payments, PaymentsFileWriter paymentsFileWriter) {
         getCheckButton.addActionListener(e -> {
             System.out.println(printer.printAllPaymentsMenu(payments.getPayments()));
             checkTextArea.setText(printer.printAllPaymentsMenu(payments.getPayments()));
         });
-        reloadButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int num = checkPrintChoose.getSelectedIndex();
 
-                switch (num){
-                    case 0:
-                        checkTextArea.setText(printer.printAllPaymentsMenu(payments.getPayments()));
-                        break;
-                    case 1:
-                        checkTextArea.setText(printer.printPaymentFromThisMonth(payments.getPayments()));
-                        break;
-                    case 2:
-                        checkTextArea.setText(printer.printPaymentFromThisYear(payments.getPayments()));
-                        break;
-                    case 3:
-                        checkTextArea.setText(printer.printIncomesPayment(payments.getPayments()));
-                        break;
-                    case 4:
-                        checkTextArea.setText(printer.printCostPayment(payments.getPayments()));
-                        break;
-                }
-            }
-        });
-        mostButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mostPanel.setVisible(true);
-                incomesPanel.setVisible(false);
-                costsPanel.setVisible(false);
-                balancePanel.setVisible(false);
-                getCheckPanel.setVisible(false);
+        reloadButton.addActionListener(e -> {
+            int num = checkPrintChoose.getSelectedIndex();
 
+            switch (num){
+                case 0:
+                    checkTextArea.setText(printer.printAllPaymentsMenu(payments.getPayments()));
+                    break;
+                case 1:
+                    checkTextArea.setText(printer.printPaymentFromThisMonth(payments.getPayments()));
+                    break;
+                case 2:
+                    checkTextArea.setText(printer.printPaymentFromThisYear(payments.getPayments()));
+                    break;
+                case 3:
+                    checkTextArea.setText(printer.printIncomesPayment(payments.getPayments()));
+                    break;
+                case 4:
+                    checkTextArea.setText(printer.printCostPayment(payments.getPayments()));
+                    break;
             }
         });
 
+
+        exportButton1.addActionListener(e -> paymentsFileWriter.export(payments.getPayments(), pathTextField.getText()));
     }
 
     private void startingVisibility() {
@@ -116,12 +112,35 @@ public class Program {
     }
 
     private void makeListenersForToolBar() {
+
+        exportButtonToolBar.addActionListener(e -> {
+            exportPanel.setVisible(true);
+            mostPanel.setVisible(false);
+            incomesPanel.setVisible(false);
+            costsPanel.setVisible(false);
+            balancePanel.setVisible(false);
+            getCheckPanel.setVisible(false);
+        });
+
+        mostButton.addActionListener(e -> {
+            mostPanel.setVisible(true);
+            incomesPanel.setVisible(false);
+            costsPanel.setVisible(false);
+            balancePanel.setVisible(false);
+            getCheckPanel.setVisible(false);
+            exportPanel.setVisible(false);
+            mostSpentCostsLablel.setText(catagoryHelper.getMostCostCatagory().getName() + " amount:" + catagoryHelper.getMostCostCatagory().getAmount());
+            leastSpentCost.setText(catagoryHelper.getLowestCostCatagory().getName() + " amount:" + catagoryHelper.getLowestCostCatagory().getAmount());
+            mostGotIncome.setText(catagoryHelper.getHighestIncomeCatagory().getName() + " amount:" + catagoryHelper.getHighestIncomeCatagory().getAmount());
+            leastGotIncom.setText(catagoryHelper.getLowestIncomeCatagory().getName() + " amount:" + catagoryHelper.getLowestIncomeCatagory().getAmount());
+        });
         buttonCosts.addActionListener(e -> {
             incomesPanel.setVisible(false);
             costsPanel.setVisible(true);
             balancePanel.setVisible(false);
             getCheckPanel.setVisible(false);
             mostPanel.setVisible(false);
+            exportPanel.setVisible(false);
         });
 
         buttonIncome.addActionListener(e -> {
@@ -130,6 +149,7 @@ public class Program {
             balancePanel.setVisible(false);
             getCheckPanel.setVisible(false);
             mostPanel.setVisible(false);
+            exportPanel.setVisible(false);
         });
 
         buttonBalance.addActionListener(e -> {
@@ -139,6 +159,7 @@ public class Program {
             balancePanel.setVisible(true);
             getCheckPanel.setVisible(false);
             mostPanel.setVisible(false);
+            exportPanel.setVisible(false);
         });
 
         getCheckButton.addActionListener(e -> {
@@ -147,6 +168,7 @@ public class Program {
             balancePanel.setVisible(false);
             getCheckPanel.setVisible(true);
             mostPanel.setVisible(false);
+            exportPanel.setVisible(false);
         });
 
         addButtonIncome.addActionListener(e -> {

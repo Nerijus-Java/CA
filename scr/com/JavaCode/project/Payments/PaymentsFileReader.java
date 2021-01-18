@@ -61,7 +61,7 @@ public class PaymentsFileReader {
         if (paymentDetails[6].equals("true")) {
             Date date = new SimpleDateFormat("dd-M-yyyy hh:mm:ss").parse(paymentDetails[3]);
             Catagory catagory = setGetCatagory(paymentDetails[0], Integer.parseInt(paymentDetails[1]));
-
+            user.setBalance(user.getBalance() + Integer.parseInt(paymentDetails[2]));
 
             paymentCollection.addOldIncome(catagory, Integer.parseInt(paymentDetails[2]), date,
                     getTrueOrFalse(paymentDetails[4]), getTrueOrFalse(paymentDetails[5]));
@@ -69,6 +69,7 @@ public class PaymentsFileReader {
         } else if (paymentDetails[7].equals("false")) {
             Date date = new SimpleDateFormat("dd-M-yyyy hh:mm:ss").parse(paymentDetails[3]);
             Catagory catagory = setGetCatagory(paymentDetails[0], Integer.parseInt(paymentDetails[1]));
+            user.setBalance(user.getBalance() - Integer.parseInt(paymentDetails[2]));
 
             paymentCollection.addOldCost(catagory, Integer.parseInt(paymentDetails[2]), date, getTrueOrFalse(paymentDetails[7]));
 
