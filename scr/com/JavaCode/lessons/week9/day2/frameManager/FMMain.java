@@ -4,7 +4,7 @@ public class FMMain {
 
     public static void main(String[] args) {
         FrameOne frameOne = new FrameOne();
-
         frameOne.run();
+
     }
 }
