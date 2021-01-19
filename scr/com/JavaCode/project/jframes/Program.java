@@ -56,18 +56,17 @@ public class Program {
     private final PaymentCollection payments;
     private final CatagoryHelper catagoryHelper;
     private final User loggedInUser;
-    private final Printer printer;
+    private final Printer printer = new Printer();;
 
     public Program(PaymentCollection payments, CatagoryHelper catagoryHelper, PaymentsFileWriter paymentsFileWriter, User user) {
-        startingVisibility();
-        makeListenersForToolBar();
-        buttonListeners(payments, paymentsFileWriter);
 
         this.payments = payments;
         this.catagoryHelper = catagoryHelper;
         this.loggedInUser = user;
-        this.printer = new Printer();
 
+        makeListenersForToolBar();
+        startingVisibility();
+        buttonListeners(this.payments, paymentsFileWriter);
 
     }
 
@@ -132,12 +131,15 @@ public class Program {
             getCheckPanel.setVisible(false);
             exportPanel.setVisible(false);
 
-            mostSpentCostsLabel.setText(catagoryHelper.getMostCostCatagory().getName() +
+            leastSpentCost.setText(catagoryHelper.getMostCostCatagory().getName() +
                     "   amount: " + catagoryHelper.getMostCostCatagory().getAmount());
-            leastSpentCost.setText(catagoryHelper.getLowestCostCatagory().getName() +
+
+            mostSpentCostsLabel.setText(catagoryHelper.getLowestCostCatagory().getName() +
                     "   amount: " + catagoryHelper.getLowestCostCatagory().getAmount());
+
             mostGotIncome.setText(catagoryHelper.getHighestIncomeCatagory().getName() +
                     "   amount: " + catagoryHelper.getHighestIncomeCatagory().getAmount());
+
             leastGotIncome.setText(catagoryHelper.getLowestIncomeCatagory().getName() +
                     "   amount: " + catagoryHelper.getLowestIncomeCatagory().getAmount());
         });
@@ -185,7 +187,7 @@ public class Program {
 
                 catagoryHelper.getCatagory(incomeChoose.getSelectedIndex())
                         .setAmount(catagoryHelper.getCatagory(incomeChoose.getSelectedIndex())
-                                .getAmount() - Integer.parseInt(amountBoxIncome.getText()) );
+                                .getAmount() + Integer.parseInt(amountBoxIncome.getText()) );
 
                 payments.addIncome(catagoryHelper.getCatagory(incomeChoose.getSelectedIndex()) ,
                         Integer.parseInt(amountBoxIncome.getText())
@@ -211,4 +213,7 @@ public class Program {
         return mainPanel;
     }
 
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
+    }
 }

@@ -19,9 +19,7 @@ public class Project {
         PaymentsFileReader paymentsFileReader = new PaymentsFileReader(payments,catagoryHelper,loggedInUser);
         PaymentsFileWriter paymentsFileWriter = new PaymentsFileWriter();
 
-
         paymentsFileReader.readFile();
-
         setUpMainFrame(payments,catagoryHelper,paymentsFileWriter,loggedInUser);
 
     }

@@ -36,7 +36,7 @@ public class PaymentCollection {
     public void addCosts(Catagory catagory, int amount, boolean hidden) {
         addMoreRoom();
 
-        Payments newPayment = new Payments(catagory, amount, new Date(), true, false, false, hidden);
+        Payments newPayment = new Payments(catagory, -amount, new Date(), true, false, false, hidden);
         paymentsFileWriter.writeOnePaymentToFileWriter(newPayment);
         payments[payments.length - 1] = newPayment;
 
