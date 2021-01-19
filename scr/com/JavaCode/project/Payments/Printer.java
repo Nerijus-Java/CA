@@ -4,24 +4,14 @@ import java.util.Date;
 
 public class Printer {
 
+    public static final String PRINT_FORMAT = "Date :%-30s%-10sCatagory:%-30s%-10sAmount :%-30s%-10sTransfer :%-30b%-10sTaxes :%-20b%-10s Income:%b\n";
+    public static final String SPACES = "---->";
+
     public String printAllPaymentsMenu(Payments[] payments){
         StringBuilder holder = new StringBuilder();
-        String spaces = "---------------------------------------";
         for (Payments p : payments){
             if (!p.getHiddenCost()){
-                holder.append(String.format("Date :%-30s%-50sCatagory:%-30s%-50sAmount :%-30s%-50sTransfer :%-30b%-50sTaxes :%-20b%-50s Income:%b|\n",
-                        Payments.DATE_FORMAT.format(p.getDate()),
-                        spaces,
-                        p.getCatagory().getName(),
-                        spaces,
-                        p.getAmount(),
-                        spaces
-                        , p.getTransferToBalance(),
-                        spaces,
-                        p.getHasTaxes(),
-                        spaces,
-                        p.getIncomeOrCost()));
-
+                makeOneLine(holder, p);
             }
         }
         return holder.toString();
@@ -29,22 +19,9 @@ public class Printer {
 
     public String printCostPayment(Payments[] payments){
         StringBuilder holder = new StringBuilder();
-        String spaces = "---------------------------------------";
-
         for (Payments p : payments){
             if (!p.getIncomeOrCost()){
-                holder.append(String.format("Date :%-30s%-50sCatagory:%-30s%-50sAmount :%-30s%-50sTransfer :%-30b%-50sTaxes :%-20b%-50s Income:%b|\n",
-                        Payments.DATE_FORMAT.format(p.getDate()),
-                        spaces,
-                        p.getCatagory().getName(),
-                        spaces,
-                        p.getAmount(),
-                        spaces
-                        , p.getTransferToBalance(),
-                        spaces,
-                        p.getHasTaxes(),
-                        spaces,
-                        p.getIncomeOrCost()));
+                makeOneLine(holder, p);
             }
         }
         return holder.toString();
@@ -52,22 +29,9 @@ public class Printer {
 
     public String printIncomesPayment(Payments[] payments){
         StringBuilder holder = new StringBuilder();
-        String spaces = "------------------------------";
-
         for (Payments p : payments){
             if (p.getIncomeOrCost()){
-                holder.append(String.format("Date :%-30s%-50sCatagory:%-30s%-50sAmount :%-30s%-50sTransfer :%-30b%-50sTaxes :%-20b%-50s Income:%b|\n",
-                        Payments.DATE_FORMAT.format(p.getDate()),
-                        spaces,
-                        p.getCatagory().getName(),
-                        spaces,
-                        p.getAmount(),
-                        spaces
-                        , p.getTransferToBalance(),
-                        spaces,
-                        p.getHasTaxes(),
-                        spaces,
-                        p.getIncomeOrCost()));
+                makeOneLine(holder, p);
             }
         }
         return holder.toString();
@@ -76,73 +40,62 @@ public class Printer {
     public String printPaymentFromThisMonth(Payments[] payments){
         Date date = new Date();
         StringBuilder holder = new StringBuilder();
-        String spaces = "---------------------------------------";
 
         for (Payments p : payments){
             if (!p.getHiddenCost() && p.getDate().getMonth() == date.getMonth()){
-                holder.append(String.format("Date :%-30s%-50sCatagory:%-30s%-50sAmount :%-30s%-50sTransfer :%-30b%-50sTaxes :%-20b%-50s Income:%b|\n",
-                        Payments.DATE_FORMAT.format(p.getDate()),
-                        spaces,
-                        p.getCatagory().getName(),
-                        spaces,
-                        p.getAmount(),
-                        spaces
-                        , p.getTransferToBalance(),
-                        spaces,
-                        p.getHasTaxes(),
-                        spaces,
-                        p.getIncomeOrCost()));
+                makeOneLine(holder, p);
             }
         }
         return holder.toString();
     }
 
-//    public String printPaymentFromChosenMonth(Payments[] payments, Date date){
-//        for (Payments p : payments){
-//            if (!p.getHiddenCost() && p.getDate().getMonth() == date.getMonth()){
-//                System.out.printf(
-//                        "Date :%-15s  Catagory:%-25s  Amount :%-10d  Transfer :%-6b Taxes :%-6b Income:%-6b \n",
-//                        Payments.DATE_FORMAT.format(p.getDate()),p.getCatagory().getName(),p.getAmount()
-//                        ,p.getTransferToBalance(),p.getHasTaxes(),p.getIncomeOrCost()
-//                );
-//            }
-//        }
-//    }
-//
     public String printPaymentFromThisYear(Payments[] payments){
         Date date = new Date();
         StringBuilder holder = new StringBuilder();
-        String spaces = "---------------------------------------";
         for (Payments p : payments){
             if (!p.getHiddenCost() && p.getDate().getYear() == date.getYear()){
-                holder.append(String.format("Date :%-30s%-50sCatagory:%-30s%-50sAmount :%-30s%-50sTransfer :%-30b%-50sTaxes :%-20b%-50s Income:%b|\n",
-                        Payments.DATE_FORMAT.format(p.getDate()),
-                        spaces,
-                        p.getCatagory().getName(),
-                        spaces,
-                        p.getAmount(),
-                        spaces
-                        , p.getTransferToBalance(),
-                        spaces,
-                        p.getHasTaxes(),
-                        spaces,
-                        p.getIncomeOrCost()));
+                makeOneLine(holder, p);
             }
         }
         return holder.toString();
     }
-//
-//    public String printPaymentChosenYear(Payments[] payments, Date date){
-//        for (Payments p : payments){
-//            if (!p.getHiddenCost() && p.getDate().getYear() == date.getYear()){
-//                System.out.printf(
-//                        "Date :%-15s  Catagory:%-25s  Amount :%-10d  Transfer :%-6b Taxes :%-6b Income:%-6b \n",
-//                        Payments.DATE_FORMAT.format(p.getDate()),p.getCatagory().getName(),p.getAmount()
-//                        ,p.getTransferToBalance(),p.getHasTaxes(),p.getIncomeOrCost()
-//                );
-//            }
-//        }
-//    }
 
+    public String printPaymentChosenYear(Payments[] payments, int year){
+        Date date = new Date();
+        date.setYear(year);
+        StringBuilder holder = new StringBuilder();
+        for (Payments p : payments){
+            if (!p.getHiddenCost() && p.getDate().getYear() == date.getYear()){
+                makeOneLine(holder, p);
+            }
+        }
+        return holder.toString();
+    }
 
+    public String printPaymentFromChosenMonth(Payments[] payments, int month){
+        Date date = new Date();
+        date.setMonth(month);
+        StringBuilder holder = new StringBuilder();
+        for (Payments p : payments){
+            if (!p.getHiddenCost() && p.getDate().getMonth() == date.getMonth()){
+                makeOneLine(holder, p);
+            }
+        }
+        return holder.toString();
+    }
+
+    private void makeOneLine(StringBuilder holder, Payments p) {
+        holder.append(String.format(PRINT_FORMAT,
+                Payments.DATE_FORMAT.format(p.getDate()),
+                SPACES,
+                p.getCatagory().getName(),
+                SPACES,
+                p.getAmount(),
+                SPACES
+                , p.getTransferToBalance(),
+                SPACES,
+                p.getHasTaxes(),
+                SPACES,
+                p.getIncomeOrCost()));
+    }
 }

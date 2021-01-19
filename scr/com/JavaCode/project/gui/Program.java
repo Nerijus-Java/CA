@@ -51,6 +51,8 @@ public class Program {
     private JLabel leastSpentCost;
     private JLabel mostGotIncome;
     private JLabel leastGotIncome;
+    private JTextField monthTextField;
+    private JTextField yearTextField;
 
     //Helpers and other classes
     private final PaymentCollection payments;
@@ -58,7 +60,8 @@ public class Program {
     private final User loggedInUser;
     private final Printer printer = new Printer();;
 
-    public Program(PaymentCollection payments, CatagoryHelper catagoryHelper, PaymentsFileWriter paymentsFileWriter, User user) {
+    public Program(PaymentCollection payments, CatagoryHelper catagoryHelper,
+                   PaymentsFileWriter paymentsFileWriter, User user) {
 
         this.payments = payments;
         this.catagoryHelper = catagoryHelper;
@@ -79,7 +82,6 @@ public class Program {
 
         reloadButton.addActionListener(e -> {
             int num = checkPrintChoose.getSelectedIndex();
-
             switch (num){
                 case 0:
                     checkTextArea.setText(printer.printAllPaymentsMenu(payments.getPayments()));

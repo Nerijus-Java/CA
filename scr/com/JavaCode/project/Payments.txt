@@ -2,4 +2,5 @@ Salary,1500,1500,19-1-2021 05:21:02,true,true,true,false
 Shop,-200,-200,19-1-2021 05:21:07,true,false,false,false
 Benefit,200,200,19-1-2021 05:21:15,true,false,true,false
 Studies,-3000,-3000,19-1-2021 05:21:21,true,false,false,false
-Gifts,1500,1500,19-1-2021 05:21:31,true,false,true,false
+Gifts,1500,1500,19-1-2020 05:21:31,true,false,true,false
+Salary,1900,400,19-1-2021 08:02:21,true,true,true,false
