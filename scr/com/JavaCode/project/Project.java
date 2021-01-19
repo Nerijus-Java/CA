@@ -4,7 +4,7 @@ import com.JavaCode.project.Payments.PaymentCollection;
 import com.JavaCode.project.Payments.PaymentsFileReader;
 import com.JavaCode.project.Payments.PaymentsFileWriter;
 import com.JavaCode.project.catagory.CatagoryHelper;
-import com.JavaCode.project.jframes.Program;
+import com.JavaCode.project.gui.Program;
 import com.JavaCode.project.user.User;
 
 import javax.swing.*;

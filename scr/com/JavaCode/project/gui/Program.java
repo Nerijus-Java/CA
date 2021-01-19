@@ -1,4 +1,4 @@
-package com.JavaCode.project.jframes;
+package com.JavaCode.project.gui;
 
 import com.JavaCode.project.Payments.PaymentCollection;
 import com.JavaCode.project.Payments.PaymentsFileWriter;
