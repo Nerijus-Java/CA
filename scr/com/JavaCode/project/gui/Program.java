@@ -98,6 +98,14 @@ public class Program {
                 case 4:
                     checkTextArea.setText(printer.printCostPayment(payments.getPayments()));
                     break;
+                case 5:
+                    checkTextArea.setText(printer.printPaymentFromChosenMonth(payments.getPayments(),
+                            Integer.parseInt(monthTextField.getText())));
+                    break;
+                case 6:
+                    checkTextArea.setText(printer.printPaymentChosenYear(payments.getPayments(),
+                            Integer.parseInt(yearTextField.getText())));
+                    break;
             }
         });
 
@@ -213,9 +221,5 @@ public class Program {
 
     public JPanel getMainPanel() {
         return mainPanel;
-    }
-
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
     }
 }
