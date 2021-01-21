@@ -58,7 +58,7 @@ public class Program {
     private final PaymentCollection payments;
     private final CatagoryHelper catagoryHelper;
     private final User loggedInUser;
-    private final Printer printer = new Printer();;
+    private final Printer printer = new Printer();
 
     public Program(PaymentCollection payments, CatagoryHelper catagoryHelper,
                    PaymentsFileWriter paymentsFileWriter, User user) {

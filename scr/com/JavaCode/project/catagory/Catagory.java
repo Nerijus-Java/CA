@@ -2,8 +2,8 @@ package com.JavaCode.project.catagory;
 
 public class Catagory {
 
-    private String name;
-    private boolean income;
+    private final String name;
+    private final boolean income;
     private int amount;
 
     public Catagory(String name, boolean income, int amount) {

@@ -1,10 +1,11 @@
 package com.JavaCode.project.catagory;
 
 public class CatagoryHelper {
-    private static final CatagoryCollection catagoryCollection = new CatagoryCollection();
 
-    public CatagoryHelper() {
-    }
+    public static final Catagory NONE_INCOME = new Catagory("None", true, 0);
+    public static final Catagory NONE_COST = new Catagory("None", false, 1);
+
+    private final CatagoryCollection catagoryCollection = new CatagoryCollection();
 
     public Catagory getCatagory(int i){
         return catagoryCollection.getCatagory()[i];
@@ -12,7 +13,7 @@ public class CatagoryHelper {
 
     public Catagory getHighestIncomeCatagory(){
         int max = Integer.MIN_VALUE;
-        Catagory catagoryMax = new Catagory("None",true,1);
+        Catagory catagoryMax = NONE_INCOME;
         for (Catagory c : catagoryCollection.catagory){
             if (c.getAmount() > max && c.isIncome() && c.getAmount() != 0){
                 catagoryMax = c;
@@ -24,7 +25,7 @@ public class CatagoryHelper {
 
     public Catagory getLowestIncomeCatagory(){
         int min = Integer.MAX_VALUE;
-        Catagory catagoryMax = new Catagory("None",true,1);
+        Catagory catagoryMax = NONE_INCOME;
 
         for (Catagory c : catagoryCollection.catagory){
             if (c.getAmount() < min && c.isIncome() && c.getAmount() != 0){
@@ -37,7 +38,7 @@ public class CatagoryHelper {
 
     public Catagory getMostCostCatagory(){
         int max = Integer.MIN_VALUE;
-        Catagory catagoryMax = new Catagory("None",false,1);
+        Catagory catagoryMax = NONE_COST;
 
         for (Catagory c : catagoryCollection.catagory){
             if (c.getAmount() > max && !c.isIncome() && c.getAmount() != 0){
@@ -50,7 +51,7 @@ public class CatagoryHelper {
 
     public Catagory getLowestCostCatagory(){
         int max = Integer.MAX_VALUE;
-        Catagory catagoryMax = new Catagory("None",false,1);
+        Catagory catagoryMax = NONE_COST;
 
         for (Catagory c : catagoryCollection.catagory){
             if (c.getAmount() < max && !c.isIncome() && c.getAmount() != 0){
