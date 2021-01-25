@@ -18,8 +18,9 @@
           <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
-        <border type="line" title="Costs">
-          <title-color color="-16777216"/>
+        <border type="line" title="Costs" title-justification="2" title-position="2">
+          <font/>
+          <title-color color="-6445644"/>
           <color color="-16777216"/>
         </border>
         <children>
@@ -28,7 +29,7 @@
               <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
-              <text value="Add"/>
+              <text value="Add transaction"/>
             </properties>
           </component>
           <component id="aeb7" class="javax.swing.JComboBox" binding="costChoose">
@@ -248,7 +249,7 @@
           </component>
         </children>
       </toolbar>
-      <grid id="51e70" binding="getCheckPanel" layout-manager="GridLayoutManager" row-count="2" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="51e70" binding="getCheckPanel" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true"/>
@@ -260,7 +261,7 @@
         <children>
           <scrollpane id="53a5">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="7" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
+              <grid row="0" column="0" row-span="1" col-span="4" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="43" height="76"/>
               </grid>
             </constraints>

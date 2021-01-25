@@ -5,7 +5,11 @@ public class CatagoryHelper {
     public static final Catagory NONE_INCOME = new Catagory("None", true, 0);
     public static final Catagory NONE_COST = new Catagory("None", false, 1);
 
-    private final CatagoryCollection catagoryCollection = new CatagoryCollection();
+    private final CatagoryCollection catagoryCollection;
+
+    public CatagoryHelper(CatagoryCollection catagoryCollection) {
+        this.catagoryCollection = catagoryCollection;
+    }
 
     public Catagory getCatagory(int i){
         return catagoryCollection.getCatagory()[i];

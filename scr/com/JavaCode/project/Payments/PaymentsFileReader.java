@@ -15,10 +15,10 @@ import java.util.Date;
 public class PaymentsFileReader {
 
     public static final String PAYMENTS_PATH = "scr/com/JavaCode/project/Payments.txt";
-    SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
-    PaymentCollection paymentCollection;
-    CatagoryHelper catagoryCollection;
-    User user ;
+    public static final String DATE_FORMAT = "dd-M-yyyy hh:mm:ss";
+    private final PaymentCollection paymentCollection;
+    private final CatagoryHelper catagoryCollection;
+    private final User user;
 
     public PaymentsFileReader(PaymentCollection paymentCollection, CatagoryHelper catagoryCollection, User loggedInUser) {
         this.paymentCollection = paymentCollection;
@@ -26,7 +26,7 @@ public class PaymentsFileReader {
         this.user = loggedInUser;
     }
 
-    public void readFile(){
+    public void readFile() {
         try {
             FileInputStream fis = new FileInputStream(PAYMENTS_PATH);
             BufferedReader br = new BufferedReader(new InputStreamReader(fis));
@@ -45,21 +45,22 @@ public class PaymentsFileReader {
 
     private void lineToPayment(String line) throws ParseException {
         int lineCount = 0;
-        String holder = "";
+        StringBuilder holder = new StringBuilder();
         String[] paymentDetails = new String[8];
 
         for (char c : line.toCharArray()) {
             if (c != ',') {
-                holder += c;
+                holder.append(c);
             } else {
-                paymentDetails[lineCount] = holder;
+                paymentDetails[lineCount] = holder.toString();
                 lineCount++;
-                holder = "";
+                holder = new StringBuilder();
             }
         }
-        paymentDetails[7] = holder;
+
+        paymentDetails[7] = holder.toString();
         if (paymentDetails[6].equals("true")) {
-            Date date = new SimpleDateFormat("dd-M-yyyy hh:mm:ss").parse(paymentDetails[3]);
+            Date date = new SimpleDateFormat(DATE_FORMAT).parse(paymentDetails[3]);
             Catagory catagory = setGetCatagory(paymentDetails[0], Integer.parseInt(paymentDetails[1]));
             user.setBalance(user.getBalance() + Integer.parseInt(paymentDetails[2]));
 
@@ -67,7 +68,7 @@ public class PaymentsFileReader {
                     getTrueOrFalse(paymentDetails[4]), getTrueOrFalse(paymentDetails[5]));
 
         } else if (paymentDetails[7].equals("false")) {
-            Date date = new SimpleDateFormat("dd-M-yyyy hh:mm:ss").parse(paymentDetails[3]);
+            Date date = new SimpleDateFormat(DATE_FORMAT).parse(paymentDetails[3]);
             Catagory catagory = setGetCatagory(paymentDetails[0], Integer.parseInt(paymentDetails[1]));
             user.setBalance(user.getBalance() + Integer.parseInt(paymentDetails[2]));
 

@@ -3,6 +3,7 @@ package com.JavaCode.project.gui;
 import com.JavaCode.project.Payments.PaymentCollection;
 import com.JavaCode.project.Payments.PaymentsFileWriter;
 import com.JavaCode.project.Payments.Printer;
+import com.JavaCode.project.catagory.CatagoryCollection;
 import com.JavaCode.project.catagory.CatagoryHelper;
 import com.JavaCode.project.user.User;
 
@@ -55,22 +56,20 @@ public class Program {
     private JTextField yearTextField;
 
     //Helpers and other classes
-    private final PaymentCollection payments;
-    private final CatagoryHelper catagoryHelper;
     private final User loggedInUser;
     private final Printer printer = new Printer();
+    private final ActionListenerHelper aLHelper;
 
-    public Program(PaymentCollection payments, CatagoryHelper catagoryHelper,
-                   PaymentsFileWriter paymentsFileWriter, User user) {
 
-        this.payments = payments;
-        this.catagoryHelper = catagoryHelper;
+    public Program(PaymentCollection paymentCollection, PaymentsFileWriter paymentsFileWriter,
+                   User user, CatagoryCollection catagoryCollection) {
         this.loggedInUser = user;
+        CatagoryHelper catagoryHelper = new CatagoryHelper(catagoryCollection);
+        this.aLHelper = new ActionListenerHelper(catagoryHelper, user, paymentCollection);
 
         makeListenersForToolBar();
         startingVisibility();
-        buttonListeners(this.payments, paymentsFileWriter);
-
+        buttonListeners(paymentCollection, paymentsFileWriter);
     }
 
     private void buttonListeners(PaymentCollection payments, PaymentsFileWriter paymentsFileWriter) {
@@ -80,37 +79,42 @@ public class Program {
             checkTextArea.setText(printer.printAllPaymentsMenu(payments.getPayments()));
         });
 
-        reloadButton.addActionListener(e -> {
-            int num = checkPrintChoose.getSelectedIndex();
-            switch (num){
-                case 0:
-                    checkTextArea.setText(printer.printAllPaymentsMenu(payments.getPayments()));
-                    break;
-                case 1:
-                    checkTextArea.setText(printer.printPaymentFromThisMonth(payments.getPayments()));
-                    break;
-                case 2:
-                    checkTextArea.setText(printer.printPaymentFromThisYear(payments.getPayments()));
-                    break;
-                case 3:
-                    checkTextArea.setText(printer.printIncomesPayment(payments.getPayments()));
-                    break;
-                case 4:
-                    checkTextArea.setText(printer.printCostPayment(payments.getPayments()));
-                    break;
-                case 5:
-                    checkTextArea.setText(printer.printPaymentFromChosenMonth(payments.getPayments(),
-                            Integer.parseInt(monthTextField.getText())));
-                    break;
-                case 6:
-                    checkTextArea.setText(printer.printPaymentChosenYear(payments.getPayments(),
-                            Integer.parseInt(yearTextField.getText())));
-                    break;
-            }
-        });
-
+        reloadButton.addActionListener(e -> aLHelper.reloadButtonAL(checkPrintChoose, checkTextArea, printer,
+                monthTextField, yearTextField));
 
         exportButton1.addActionListener(e -> paymentsFileWriter.export(payments.getPayments(), pathTextField.getText()));
+    }
+
+    private void makeListenersForToolBar() {
+        mostButton.addActionListener(e -> {
+            aLHelper.toolbarVisibilityAL(exportPanel, mostPanel, incomesPanel, costsPanel, balancePanel, getCheckPanel
+                    , mostPanel);
+
+            aLHelper.mostTextAL(leastSpentCost, mostSpentCostsLabel, mostGotIncome, leastGotIncome);
+        });
+
+        exportButtonToolBar.addActionListener(e -> aLHelper.toolbarVisibilityAL(exportPanel, mostPanel,
+                incomesPanel, costsPanel, balancePanel, getCheckPanel, exportPanel));
+
+        buttonCosts.addActionListener(e -> aLHelper.toolbarVisibilityAL(exportPanel, mostPanel, incomesPanel
+                , costsPanel, balancePanel, getCheckPanel, costsPanel));
+
+        buttonIncome.addActionListener(e -> aLHelper.toolbarVisibilityAL(exportPanel, mostPanel, incomesPanel
+                , costsPanel, balancePanel, getCheckPanel, incomesPanel));
+
+        getCheckButton.addActionListener(e -> aLHelper.toolbarVisibilityAL(exportPanel, mostPanel, incomesPanel
+                , costsPanel, balancePanel, getCheckPanel, getCheckPanel));
+
+        addButtonIncome.addActionListener(e -> aLHelper.addInAL(amountBoxIncome, transferToBalanceCheckBoxIncome
+                , incomeChoose, taxesCheckBoxIncome));
+
+        addButtonCosts.addActionListener(e -> aLHelper.addCostAL(amountTextFieldCost, costChoose, hiddenCheckBox));
+
+        buttonBalance.addActionListener(e -> {
+            amountTextField.setText(loggedInUser.getBalance() + "");
+            aLHelper.toolbarVisibilityAL(exportPanel, mostPanel, incomesPanel, costsPanel, balancePanel, getCheckPanel
+                    , balancePanel);
+        });
     }
 
     private void startingVisibility() {
@@ -120,103 +124,6 @@ public class Program {
         getCheckPanel.setVisible(false);
         mostPanel.setVisible(false);
         exportPanel.setVisible(false);
-    }
-
-    private void makeListenersForToolBar() {
-
-        exportButtonToolBar.addActionListener(e -> {
-            exportPanel.setVisible(true);
-            mostPanel.setVisible(false);
-            incomesPanel.setVisible(false);
-            costsPanel.setVisible(false);
-            balancePanel.setVisible(false);
-            getCheckPanel.setVisible(false);
-        });
-
-        mostButton.addActionListener(e -> {
-            mostPanel.setVisible(true);
-            incomesPanel.setVisible(false);
-            costsPanel.setVisible(false);
-            balancePanel.setVisible(false);
-            getCheckPanel.setVisible(false);
-            exportPanel.setVisible(false);
-
-            leastSpentCost.setText(catagoryHelper.getMostCostCatagory().getName() +
-                    "   amount: " + catagoryHelper.getMostCostCatagory().getAmount());
-
-            mostSpentCostsLabel.setText(catagoryHelper.getLowestCostCatagory().getName() +
-                    "   amount: " + catagoryHelper.getLowestCostCatagory().getAmount());
-
-            mostGotIncome.setText(catagoryHelper.getHighestIncomeCatagory().getName() +
-                    "   amount: " + catagoryHelper.getHighestIncomeCatagory().getAmount());
-
-            leastGotIncome.setText(catagoryHelper.getLowestIncomeCatagory().getName() +
-                    "   amount: " + catagoryHelper.getLowestIncomeCatagory().getAmount());
-        });
-
-        buttonCosts.addActionListener(e -> {
-            incomesPanel.setVisible(false);
-            costsPanel.setVisible(true);
-            balancePanel.setVisible(false);
-            getCheckPanel.setVisible(false);
-            mostPanel.setVisible(false);
-            exportPanel.setVisible(false);
-        });
-
-        buttonIncome.addActionListener(e -> {
-            incomesPanel.setVisible(true);
-            costsPanel.setVisible(false);
-            balancePanel.setVisible(false);
-            getCheckPanel.setVisible(false);
-            mostPanel.setVisible(false);
-            exportPanel.setVisible(false);
-        });
-
-        buttonBalance.addActionListener(e -> {
-            amountTextField.setText(loggedInUser.getBalance() + "");
-            incomesPanel.setVisible(false);
-            costsPanel.setVisible(false);
-            balancePanel.setVisible(true);
-            getCheckPanel.setVisible(false);
-            mostPanel.setVisible(false);
-            exportPanel.setVisible(false);
-        });
-
-        getCheckButton.addActionListener(e -> {
-            incomesPanel.setVisible(false);
-            costsPanel.setVisible(false);
-            balancePanel.setVisible(false);
-            getCheckPanel.setVisible(true);
-            mostPanel.setVisible(false);
-            exportPanel.setVisible(false);
-        });
-
-        addButtonIncome.addActionListener(e -> {
-            if (amountBoxIncome.getText() != null && !amountBoxIncome.getText().equals("Amount")){
-                loggedInUser.setBalance(loggedInUser.getBalance() + Integer.parseInt(amountBoxIncome.getText()));
-
-                catagoryHelper.getCatagory(incomeChoose.getSelectedIndex())
-                        .setAmount(catagoryHelper.getCatagory(incomeChoose.getSelectedIndex())
-                                .getAmount() + Integer.parseInt(amountBoxIncome.getText()) );
-
-                payments.addIncome(catagoryHelper.getCatagory(incomeChoose.getSelectedIndex()) ,
-                        Integer.parseInt(amountBoxIncome.getText())
-                        ,transferToBalanceCheckBoxIncome.isSelected(),taxesCheckBoxIncome.isSelected());
-            }
-        });
-
-        addButtonCosts.addActionListener(e -> {
-            if ( amountTextFieldCost.getText() != null && !amountTextFieldCost.getText().equals("Amount")){
-
-                loggedInUser.setBalance(loggedInUser.getBalance() - Integer.parseInt(amountTextFieldCost.getText()));
-                catagoryHelper.getCatagory(costChoose.getSelectedIndex() + 7)
-                        .setAmount(catagoryHelper.getCatagory(costChoose.getSelectedIndex() + 7)
-                                .getAmount() - Integer.parseInt(amountTextFieldCost.getText()) );
-
-                payments.addCosts(catagoryHelper.getCatagory(costChoose.getSelectedIndex() + 7),
-                        Integer.parseInt(amountTextFieldCost.getText()),hiddenCheckBox.isSelected());
-            }
-        });
     }
 
     public JPanel getMainPanel() {

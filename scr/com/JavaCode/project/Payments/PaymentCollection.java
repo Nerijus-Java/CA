@@ -1,15 +1,14 @@
 package com.JavaCode.project.Payments;
 
 import com.JavaCode.project.catagory.Catagory;
-import com.JavaCode.project.catagory.CatagoryHelper;
 
 import java.util.Date;
 
 public class PaymentCollection {
 
     private Payments[] payments;
-    private PaymentsFileWriter paymentsFileWriter = new PaymentsFileWriter();
-    private CatagoryHelper catagoryHelper = new CatagoryHelper();
+    private final PaymentsFileWriter paymentsFileWriter = new PaymentsFileWriter();
+
 
     public PaymentCollection() {
         this.payments = new Payments[0];
