@@ -16,6 +16,12 @@ public class UserCollection {
         users[users.length - 1] = newUser;
     }
 
+    public void addOldUser(String name,String password){
+        User newUser = new User(name,password);
+        addMoreRoom();
+        users[users.length - 1] = newUser;
+    }
+
     public User getUserByNameAndPassword(String name,String password){
         for(User u : users){
             if (u.getName().equals(name) && u.getPassword().equals(password)){

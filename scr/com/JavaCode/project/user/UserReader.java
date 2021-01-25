@@ -45,6 +45,6 @@ public class UserReader {
                 holder = new StringBuilder();
             }
         }
-        userCollection.addNewUser(userDetails[0],userDetails[1]);
+        userCollection.addOldUser(userDetails[0],userDetails[1]);
     }
 }

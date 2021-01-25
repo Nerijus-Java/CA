@@ -62,7 +62,7 @@ public class Printer {
 
     public String printPaymentChosenYear(Payments[] payments, int year){
         Date date = new Date();
-        date.setYear(year);
+        date.setYear(year - 1900);
         StringBuilder holder = new StringBuilder();
         for (Payments p : payments){
             if (!p.getHiddenCost() && p.getDate().getYear() == date.getYear()){
@@ -74,10 +74,23 @@ public class Printer {
 
     public String printPaymentFromChosenMonth(Payments[] payments, int month){
         Date date = new Date();
-        date.setMonth(month);
+        date.setMonth(month - 1);
         StringBuilder holder = new StringBuilder();
         for (Payments p : payments){
             if (!p.getHiddenCost() && p.getDate().getMonth() == date.getMonth()){
+                makeOneLine(holder, p);
+            }
+        }
+        return holder.toString();
+    }
+
+    public String printPaymentFromChosenMonthAndYear(Payments[] payments, int month, int year){
+        Date date = new Date();
+        date.setMonth(month - 1);
+        date.setYear(year - 1900);
+        StringBuilder holder = new StringBuilder();
+        for (Payments p : payments){
+            if (!p.getHiddenCost() && p.getDate().getMonth() == date.getMonth() && p.getDate().getYear() == date.getYear()){
                 makeOneLine(holder, p);
             }
         }

@@ -3,7 +3,6 @@ package com.JavaCode.project.gui.login;
 import com.JavaCode.project.gui.SetUp;
 import com.JavaCode.project.user.User;
 import com.JavaCode.project.user.UserCollection;
-import com.JavaCode.project.user.UserWriter;
 
 import javax.swing.*;
 
@@ -17,21 +16,21 @@ public class Login {
 
     //Helpers and other classes
     private final UserCollection userCollection;
-    private final UserWriter userWriter;
-    private User loggedInUser;
-    private SetUp guiManager;
+    private final SetUp setUp;
 
-    public Login(UserCollection userCollection, UserWriter userWriter, SetUp guiManager) {
+    public Login(UserCollection userCollection, SetUp setUp) {
         this.userCollection = userCollection;
-        this.userWriter = userWriter;
-        this.guiManager = guiManager;
+        this.setUp = setUp;
+        setUpButtonActionListeners();
     }
 
     public void setUpButtonActionListeners(){
         login.addActionListener(e -> {
             for (User u : userCollection.getUsers()){
                 if (username.getText().equals(u.getName()) && password.getText().equals(u.getPassword())){
-                    this.loggedInUser = u;
+                    setUp.setUpMainFrame(u);
+                    setUp.runMainFrame();
+                    break;
                 }
             }
         });
@@ -41,10 +40,6 @@ public class Login {
                 userCollection.addNewUser(username.getText(), password.getText());
             }
         });
-    }
-
-    public User getLoggedInUser() {
-        return loggedInUser;
     }
 
     public JPanel getMainPanel() {

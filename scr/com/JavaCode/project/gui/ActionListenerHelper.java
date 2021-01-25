@@ -46,6 +46,9 @@ public class ActionListenerHelper {
             case 6:
                 checkTextArea.setText(printer.printPaymentChosenYear(paymentCollection.getPayments(),
                         Integer.parseInt(yearTextField.getText())));
+            case 7:
+                checkTextArea.setText(printer.printPaymentFromChosenMonthAndYear(paymentCollection.getPayments(),
+                        Integer.parseInt(monthTextField.getText()),Integer.parseInt(yearTextField.getText())));
                 break;
         }
     }

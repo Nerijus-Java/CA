@@ -9,14 +9,14 @@ public class Payments {
 
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
 
-    private Catagory catagory;
-    private Integer amount;
-    private Date date;
+    private final Catagory catagory;
+    private final Integer amount;
+    private final Date date;
 
-    private Boolean transferToBalance;
-    private Boolean hasTaxes;
-    private Boolean incomeOrCost;
-    private Boolean hiddenCost;
+    private final Boolean transferToBalance;
+    private final Boolean hasTaxes;
+    private final Boolean incomeOrCost;
+    private final Boolean hiddenCost;
 
     public Payments(Catagory catagory, Integer amount, Date date, Boolean transferToBalance, Boolean hasTaxes, Boolean incomeOrCost, Boolean hiddenCost) {
         this.catagory = catagory;
