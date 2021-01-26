@@ -38,7 +38,7 @@ public class Task3 {
     public static void menu() {
         System.out.println("____________");
         System.out.println("[1] print");
-        System.out.println("[2] add");
+        System.out.println("[2] addIncome");
         System.out.println("[-] back");
         System.out.print("Enter :");
     }
