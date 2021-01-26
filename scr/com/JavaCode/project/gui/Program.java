@@ -54,7 +54,7 @@ public class Program {
     private JLabel mostGotIncome;
     private JLabel leastGotIncome;
 
-    //Export
+    //Options
     private JButton openButton;
     private JButton exportButton1;
     private JButton optionsButtonToolBar;

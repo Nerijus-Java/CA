@@ -66,7 +66,7 @@ public class CatagoryHelper {
         return catagoryMax;
     }
 
-    public void resetCatagorys(){
+    public void resetCategories(){
         catagoryCollection = new CatagoryCollection();
     }
 

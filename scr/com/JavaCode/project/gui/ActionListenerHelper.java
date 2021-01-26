@@ -33,7 +33,7 @@ public class ActionListenerHelper {
 
     public void newButtonAL(){
         loggedInUser.setBalance(0);
-        catagoryHelper.resetCatagorys();
+        catagoryHelper.resetCategories();
         paymentCollection.resetArray();
         paymentsFileWriter.resetFile(paymentCollection.getPayments());
     }
@@ -41,7 +41,7 @@ public class ActionListenerHelper {
     public void openButtonAL(){
         FileChooser fileChooser = new FileChooser();
         loggedInUser.setBalance(0);
-        catagoryHelper.resetCatagorys();
+        catagoryHelper.resetCategories();
         paymentCollection.resetArray();
         paymentsFileReader.readNewFile(fileChooser.fileChoose().getPath());
     }
