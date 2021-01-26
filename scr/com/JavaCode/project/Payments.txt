@@ -7,3 +7,4 @@ Salary,1900,400,19-1-2021 08:02:21,true,true,true,false
 Real estate for rent,6000,6000,26-1-2021 03:46:35,true,true,true,false
 Salary,6000,6000,26-1-2021 04:23:32,true,true,true,false
 Studies,-500,-500,26-1-2021 04:23:39,true,false,false,false
+Salary,15000,15000,26-1-2021 05:30:18,true,true,true,false
