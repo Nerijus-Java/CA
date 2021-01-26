@@ -8,3 +8,7 @@ Real estate for rent,6000,6000,26-1-2021 03:46:35,true,true,true,false
 Salary,6000,6000,26-1-2021 04:23:32,true,true,true,false
 Studies,-500,-500,26-1-2021 04:23:39,true,false,false,false
 Salary,15000,15000,26-1-2021 05:30:18,true,true,true,false
+Salary,15000,15000,26-1-2021 05:45:43,true,true,true,false
+Salary,600,600,26-1-2021 07:49:14,true,true,true,false
+Car,-20,-20,26-1-2021 07:49:25,true,false,false,false
+Housing taxes,-20,-20,26-1-2021 07:49:29,true,false,false,true
