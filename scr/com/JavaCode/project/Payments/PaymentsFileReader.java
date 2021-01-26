@@ -27,7 +27,6 @@ public class PaymentsFileReader {
     }
 
     public void readNewFile(String path){
-        paymentCollection.resetFileAndCatagory();
         try {
             FileInputStream fis = new FileInputStream(path);
             BufferedReader br = new BufferedReader(new InputStreamReader(fis));

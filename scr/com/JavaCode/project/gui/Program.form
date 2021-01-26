@@ -15,12 +15,12 @@
       <grid id="d0f50" binding="costsPanel" layout-manager="GridLayoutManager" row-count="4" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
-        <border type="line" title="Costs" title-justification="2" title-position="2">
+        <border type="line" title="Costs" title-justification="1" title-position="2">
           <font/>
-          <title-color color="-6445644"/>
+          <title-color color="-16777216"/>
           <color color="-16777216"/>
         </border>
         <children>
@@ -100,7 +100,7 @@
           </component>
         </children>
       </grid>
-      <grid id="80fea" binding="exportPanel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="80fea" binding="exportPanel" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="5" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -112,7 +112,7 @@
         <children>
           <component id="ad274" class="javax.swing.JButton" binding="exportButton1" default-binding="true">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Export"/>
@@ -120,10 +120,18 @@
           </component>
           <component id="5d53b" class="javax.swing.JButton" binding="openButton" default-binding="true">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Open"/>
+            </properties>
+          </component>
+          <component id="d07ae" class="javax.swing.JButton" binding="newButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="New "/>
             </properties>
           </component>
         </children>
@@ -239,15 +247,15 @@
               <text value="Most"/>
             </properties>
           </component>
-          <component id="e148c" class="javax.swing.JButton" binding="exportButtonToolBar">
+          <component id="e148c" class="javax.swing.JButton" binding="optionsButtonToolBar">
             <constraints/>
             <properties>
-              <text value="Export"/>
+              <text value="Options"/>
             </properties>
           </component>
         </children>
       </toolbar>
-      <grid id="51e70" binding="getCheckPanel" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="51e70" binding="checkPanel" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="6" column="0" row-span="1" col-span="4" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="true"/>

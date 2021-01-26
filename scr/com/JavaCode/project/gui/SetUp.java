@@ -16,8 +16,6 @@ public class SetUp {
 
     private JFrame loginFrame;
     private JFrame mainFrame;
-    private Login loginGUI;
-    private UserReader userReader;
 
     public void run(){
         setUpLoginFrame();
@@ -35,11 +33,11 @@ public class SetUp {
 
     public void setUpLoginFrame() {
         UserCollection userCollection = new UserCollection();
-        this.userReader = new UserReader(userCollection);
+        UserReader userReader = new UserReader(userCollection);
         userReader.readFile();
-        this.loginGUI = new Login(userCollection, this);
+        Login loginGUI = new Login(userCollection, this);
         this.loginFrame = new JFrame("Income and Costs");
-        this.loginFrame.setContentPane(this.loginGUI.getMainPanel());
+        this.loginFrame.setContentPane(loginGUI.getMainPanel());
         this.loginFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.loginFrame.pack();
     }

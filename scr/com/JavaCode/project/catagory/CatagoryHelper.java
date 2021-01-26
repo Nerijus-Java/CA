@@ -3,7 +3,7 @@ package com.JavaCode.project.catagory;
 public class CatagoryHelper {
 
     public static final Catagory NONE_INCOME = new Catagory("None", true, 0);
-    public static final Catagory NONE_COST = new Catagory("None", false, 1);
+    public static final Catagory NONE_COST = new Catagory("None", false, 0);
 
     private CatagoryCollection catagoryCollection;
 

@@ -38,7 +38,7 @@ public class Program {
     private JPanel balancePanel;
 
     //checks
-    private JPanel getCheckPanel;
+    private JPanel checkPanel;
     private JComboBox checkPrintChoose;
     private JComboBox costChoose;
     private JButton reloadButton;
@@ -57,8 +57,9 @@ public class Program {
     //Export
     private JButton openButton;
     private JButton exportButton1;
-    private JButton exportButtonToolBar;
+    private JButton optionsButtonToolBar;
     private JPanel exportPanel;
+    private JButton newButton;
 
     //Helpers and other classes
     private final User loggedInUser;
@@ -72,7 +73,7 @@ public class Program {
         this.aLHelper = new ActionListenerHelper(catagoryHelper, user, paymentCollection, pFW,pFR);
 
         makeListenersForToolBar();
-        startingVisibility();
+        startingVariables();
         buttonListeners(paymentCollection);
     }
 
@@ -87,27 +88,28 @@ public class Program {
 
         exportButton1.addActionListener(e -> aLHelper.exportButtonAL());
         openButton.addActionListener(e -> aLHelper.openButtonAL());
+        newButton.addActionListener(e -> aLHelper.newButtonAL());
     }
 
     private void makeListenersForToolBar() {
         mostButton.addActionListener(e -> {
-            aLHelper.toolbarVisibilityAL(exportPanel, mostPanel, incomesPanel, costsPanel, balancePanel, getCheckPanel
+            aLHelper.toolbarVisibilityAL(exportPanel, mostPanel, incomesPanel, costsPanel, balancePanel, checkPanel
                     , mostPanel);
 
             aLHelper.mostTextAL(leastSpentCost, mostSpentCostsLabel, mostGotIncome, leastGotIncome);
         });
 
-        exportButtonToolBar.addActionListener(e -> aLHelper.toolbarVisibilityAL(exportPanel, mostPanel,
-                incomesPanel, costsPanel, balancePanel, getCheckPanel, exportPanel));
+        optionsButtonToolBar.addActionListener(e -> aLHelper.toolbarVisibilityAL(exportPanel, mostPanel,
+                incomesPanel, costsPanel, balancePanel, checkPanel, exportPanel));
 
         buttonCosts.addActionListener(e -> aLHelper.toolbarVisibilityAL(exportPanel, mostPanel, incomesPanel
-                , costsPanel, balancePanel, getCheckPanel, costsPanel));
+                , costsPanel, balancePanel, checkPanel, costsPanel));
 
         buttonIncome.addActionListener(e -> aLHelper.toolbarVisibilityAL(exportPanel, mostPanel, incomesPanel
-                , costsPanel, balancePanel, getCheckPanel, incomesPanel));
+                , costsPanel, balancePanel, checkPanel, incomesPanel));
 
         getCheckButton.addActionListener(e -> aLHelper.toolbarVisibilityAL(exportPanel, mostPanel, incomesPanel
-                , costsPanel, balancePanel, getCheckPanel, getCheckPanel));
+                , costsPanel, balancePanel, checkPanel, checkPanel));
 
         addButtonIncome.addActionListener(e -> aLHelper.addInAL(amountBoxIncome, transferToBalanceCheckBoxIncome
                 , incomeChoose, taxesCheckBoxIncome));
@@ -116,21 +118,24 @@ public class Program {
 
         buttonBalance.addActionListener(e -> {
             amountTextField.setText(loggedInUser.getBalance() + "");
-            aLHelper.toolbarVisibilityAL(exportPanel, mostPanel, incomesPanel, costsPanel, balancePanel, getCheckPanel
+            aLHelper.toolbarVisibilityAL(exportPanel, mostPanel, incomesPanel, costsPanel, balancePanel, checkPanel
                     , balancePanel);
         });
     }
 
-    private void startingVisibility() {
+    private void startingVariables() {
         incomesPanel.setVisible(true);
         costsPanel.setVisible(false);
         balancePanel.setVisible(false);
-        getCheckPanel.setVisible(false);
+        checkPanel.setVisible(false);
         mostPanel.setVisible(false);
         exportPanel.setVisible(false);
+        aLHelper.newButtonAL();
     }
 
     public JPanel getMainPanel() {
         return mainPanel;
     }
+
+
 }

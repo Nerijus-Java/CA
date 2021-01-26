@@ -48,7 +48,7 @@ public class PaymentCollection {
         payments[payments.length - 1] = newPayment;
     }
 
-    public void resetFileAndCatagory(){
+    public void resetArray(){
         payments = new Payments[0];
     }
 

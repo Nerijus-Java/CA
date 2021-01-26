@@ -31,10 +31,18 @@ public class ActionListenerHelper {
         paymentsFileWriter.export(paymentCollection.getPayments(), fileChooser.fileChoose().getPath());
     }
 
+    public void newButtonAL(){
+        loggedInUser.setBalance(0);
+        catagoryHelper.resetCatagorys();
+        paymentCollection.resetArray();
+        paymentsFileWriter.resetFile(paymentCollection.getPayments());
+    }
+
     public void openButtonAL(){
         FileChooser fileChooser = new FileChooser();
         loggedInUser.setBalance(0);
         catagoryHelper.resetCatagorys();
+        paymentCollection.resetArray();
         paymentsFileReader.readNewFile(fileChooser.fileChoose().getPath());
     }
 
