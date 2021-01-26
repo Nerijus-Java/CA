@@ -55,7 +55,7 @@ public class SetUp {
 
         this.mainFrame = new JFrame("Income and Costs");
         this.mainFrame.setContentPane(new Program(paymentCollection, paymentsFileWriter,
-                loggedInUser, catagoryCollection).getMainPanel());
+                loggedInUser, catagoryCollection, paymentsFileReader).getMainPanel());
         this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainFrame.pack();
     }

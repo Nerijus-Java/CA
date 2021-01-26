@@ -48,6 +48,10 @@ public class PaymentCollection {
         payments[payments.length - 1] = newPayment;
     }
 
+    public void resetFileAndCatagory(){
+        payments = new Payments[0];
+    }
+
 
     private void addMoreRoom() {
         Payments[] newPayments = new Payments[payments.length + 1];

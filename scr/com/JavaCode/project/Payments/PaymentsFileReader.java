@@ -26,6 +26,24 @@ public class PaymentsFileReader {
         this.user = loggedInUser;
     }
 
+    public void readNewFile(String path){
+        paymentCollection.resetFileAndCatagory();
+        try {
+            FileInputStream fis = new FileInputStream(path);
+            BufferedReader br = new BufferedReader(new InputStreamReader(fis));
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                lineToPayment(line);
+            }
+            br.close();
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void readFile() {
         try {
             FileInputStream fis = new FileInputStream(PAYMENTS_PATH);

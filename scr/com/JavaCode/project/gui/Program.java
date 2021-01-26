@@ -1,6 +1,7 @@
 package com.JavaCode.project.gui;
 
 import com.JavaCode.project.Payments.PaymentCollection;
+import com.JavaCode.project.Payments.PaymentsFileReader;
 import com.JavaCode.project.Payments.PaymentsFileWriter;
 import com.JavaCode.project.Payments.Printer;
 import com.JavaCode.project.catagory.CatagoryCollection;
@@ -44,36 +45,38 @@ public class Program {
     private JTextArea checkTextArea;
     private JButton mostButton;
     private JPanel mostPanel;
-    private JTextField pathTextField;
-    private JButton exportButton1;
-    private JButton exportButtonToolBar;
-    private JPanel exportPanel;
+    private JTextField monthTextField;
+    private JTextField yearTextField;
+
+    //Most
     private JLabel mostSpentCostsLabel;
     private JLabel leastSpentCost;
     private JLabel mostGotIncome;
     private JLabel leastGotIncome;
-    private JTextField monthTextField;
-    private JTextField yearTextField;
+
+    //Export
+    private JButton openButton;
+    private JButton exportButton1;
+    private JButton exportButtonToolBar;
+    private JPanel exportPanel;
 
     //Helpers and other classes
     private final User loggedInUser;
     private final Printer printer = new Printer();
     private final ActionListenerHelper aLHelper;
 
-
-    public Program(PaymentCollection paymentCollection, PaymentsFileWriter paymentsFileWriter,
-                   User user, CatagoryCollection catagoryCollection) {
+    public Program(PaymentCollection paymentCollection, PaymentsFileWriter pFW,
+                   User user, CatagoryCollection catagoryCollection, PaymentsFileReader pFR) {
         this.loggedInUser = user;
         CatagoryHelper catagoryHelper = new CatagoryHelper(catagoryCollection);
-        this.aLHelper = new ActionListenerHelper(catagoryHelper, user, paymentCollection);
+        this.aLHelper = new ActionListenerHelper(catagoryHelper, user, paymentCollection, pFW,pFR);
 
         makeListenersForToolBar();
         startingVisibility();
-        buttonListeners(paymentCollection, paymentsFileWriter);
+        buttonListeners(paymentCollection);
     }
 
-    private void buttonListeners(PaymentCollection payments, PaymentsFileWriter paymentsFileWriter) {
-
+    private void buttonListeners(PaymentCollection payments) {
         getCheckButton.addActionListener(e -> {
             System.out.println(printer.printAllPaymentsMenu(payments.getPayments()));
             checkTextArea.setText(printer.printAllPaymentsMenu(payments.getPayments()));
@@ -82,7 +85,8 @@ public class Program {
         reloadButton.addActionListener(e -> aLHelper.reloadButtonAL(checkPrintChoose, checkTextArea, printer,
                 monthTextField, yearTextField));
 
-        exportButton1.addActionListener(e -> paymentsFileWriter.export(payments.getPayments(), pathTextField.getText()));
+        exportButton1.addActionListener(e -> aLHelper.exportButtonAL());
+        openButton.addActionListener(e -> aLHelper.openButtonAL());
     }
 
     private void makeListenersForToolBar() {

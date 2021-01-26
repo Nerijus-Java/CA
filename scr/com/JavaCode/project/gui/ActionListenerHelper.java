@@ -1,6 +1,8 @@
 package com.JavaCode.project.gui;
 
 import com.JavaCode.project.Payments.PaymentCollection;
+import com.JavaCode.project.Payments.PaymentsFileReader;
+import com.JavaCode.project.Payments.PaymentsFileWriter;
 import com.JavaCode.project.Payments.Printer;
 import com.JavaCode.project.catagory.CatagoryHelper;
 import com.JavaCode.project.user.User;
@@ -12,11 +14,28 @@ public class ActionListenerHelper {
     private final CatagoryHelper catagoryHelper;
     private final User loggedInUser;
     private final PaymentCollection paymentCollection;
+    private final PaymentsFileWriter paymentsFileWriter;
+    private final PaymentsFileReader paymentsFileReader;
 
-    public ActionListenerHelper(CatagoryHelper catagoryHelper, User loggedInUser, PaymentCollection paymentCollection) {
+    public ActionListenerHelper(CatagoryHelper catagoryHelper, User loggedInUser,
+                                PaymentCollection paymentCollection, PaymentsFileWriter pFW, PaymentsFileReader pFR) {
         this.catagoryHelper = catagoryHelper;
         this.loggedInUser = loggedInUser;
         this.paymentCollection = paymentCollection;
+        this.paymentsFileWriter = pFW;
+        this.paymentsFileReader = pFR;
+    }
+
+    public void exportButtonAL(){
+        FileChooser fileChooser = new FileChooser();
+        paymentsFileWriter.export(paymentCollection.getPayments(), fileChooser.fileChoose().getPath());
+    }
+
+    public void openButtonAL(){
+        FileChooser fileChooser = new FileChooser();
+        loggedInUser.setBalance(0);
+        catagoryHelper.resetCatagorys();
+        paymentsFileReader.readNewFile(fileChooser.fileChoose().getPath());
     }
 
     public void reloadButtonAL(JComboBox checkPrintChoose, JTextArea checkTextArea,
