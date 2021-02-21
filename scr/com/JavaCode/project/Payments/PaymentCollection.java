@@ -1,26 +1,31 @@
 package com.JavaCode.project.Payments;
 
+import com.JavaCode.project.database.DatabaseMethods;
 import com.JavaCode.project.model.Catagory;
 import com.JavaCode.project.model.Payments;
+import com.JavaCode.project.model.User;
 
+import java.sql.SQLException;
 import java.util.Date;
 
 public class PaymentCollection {
 
     private Payments[] payments;
-    private final PaymentsFileWriter paymentsFileWriter = new PaymentsFileWriter();
+    private DatabaseMethods databaseMethods;
 
 
     public PaymentCollection() {
         this.payments = new Payments[0];
     }
 
-    public void addIncome(Catagory catagory, int amount, boolean transfer, boolean taxes) {
+
+    public void addIncome(Catagory catagory, int amount, boolean transfer, boolean taxes, User loggedInUser) throws SQLException {
         addMoreRoom();
 
-        Payments newPayment = new Payments( catagory, amount, new Date()
-                , transfer, taxes, true, false);
-        paymentsFileWriter.writeOnePaymentToFileWriter(newPayment);
+        Payments newPayment = new Payments(catagory, amount, new Date(), transfer, taxes, true, false);
+
+        databaseMethods.addIncome(amount,transfer,taxes,catagory.getId(),loggedInUser);
+
         payments[payments.length - 1] = newPayment;
     }
 
@@ -32,15 +37,16 @@ public class PaymentCollection {
         payments[payments.length - 1] = newPayment;
     }
 
-
-    public void addCosts(Catagory catagory, int amount, boolean hidden) {
+    public void addCosts(Catagory catagory, int amount, boolean hidden,User loggedInUser) throws SQLException {
         addMoreRoom();
 
         Payments newPayment = new Payments(catagory, -amount, new Date(), true, false, false, hidden);
-        paymentsFileWriter.writeOnePaymentToFileWriter(newPayment);
+        databaseMethods.addCost(amount,hidden,catagory.getId(),loggedInUser);
         payments[payments.length - 1] = newPayment;
 
     }
+
+
 
     public void addOldCost(Catagory catagory, int amount,Date date, boolean hidden){
         addMoreRoom();
@@ -68,5 +74,9 @@ public class PaymentCollection {
 
     public Payments[] getPayments() {
         return payments;
+    }
+
+    public void setDatabaseMethods(DatabaseMethods databaseMethods) {
+        this.databaseMethods = databaseMethods;
     }
 }

@@ -1,49 +1,49 @@
 package com.JavaCode.project.gui;
 
 import com.JavaCode.project.Payments.PaymentCollection;
-import com.JavaCode.project.Payments.PaymentsFileReader;
-import com.JavaCode.project.Payments.PaymentsFileWriter;
 import com.JavaCode.project.Payments.Printer;
 import com.JavaCode.project.catagory.CatagoryHelper;
 import com.JavaCode.project.model.User;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class ActionListenerHelper {
 
     private final CatagoryHelper catagoryHelper;
     private final User loggedInUser;
     private final PaymentCollection paymentCollection;
-    private final PaymentsFileWriter paymentsFileWriter;
-    private final PaymentsFileReader paymentsFileReader;
+
+//    private final PaymentsFileWriter paymentsFileWriter;
+//    private final PaymentsFileReader paymentsFileReader;
 
     public ActionListenerHelper(CatagoryHelper catagoryHelper, User loggedInUser,
-                                PaymentCollection paymentCollection, PaymentsFileWriter pFW, PaymentsFileReader pFR) {
+                                PaymentCollection paymentCollection) {
         this.catagoryHelper = catagoryHelper;
         this.loggedInUser = loggedInUser;
         this.paymentCollection = paymentCollection;
-        this.paymentsFileWriter = pFW;
-        this.paymentsFileReader = pFR;
+//        this.paymentsFileWriter = pFW;
+//        this.paymentsFileReader = pFR;
     }
 
     public void exportButtonAL(){
-        FileChooser fileChooser = new FileChooser();
-        paymentsFileWriter.export(paymentCollection.getPayments(), fileChooser.fileChoose().getPath());
+//        FileChooser fileChooser = new FileChooser();
+//        paymentsFileWriter.export(paymentCollection.getPayments(), fileChooser.fileChoose().getPath());
     }
 
     public void newButtonAL(){
-        loggedInUser.setBalance(0);
-        catagoryHelper.resetCategories();
-        paymentCollection.resetArray();
-        paymentsFileWriter.resetFile(paymentCollection.getPayments());
+//        loggedInUser.setBalance(0);
+//        catagoryHelper.resetCategories();
+//        paymentCollection.resetArray();
+//        paymentsFileWriter.resetFile(paymentCollection.getPayments());
     }
 
     public void openButtonAL(){
-        FileChooser fileChooser = new FileChooser();
-        loggedInUser.setBalance(0);
-        catagoryHelper.resetCategories();
-        paymentCollection.resetArray();
-        paymentsFileReader.readNewFile(fileChooser.fileChoose().getPath());
+//        FileChooser fileChooser = new FileChooser();
+//        loggedInUser.setBalance(0);
+//        catagoryHelper.resetCategories();
+//        paymentCollection.resetArray();
+//        paymentsFileReader.readNewFile(fileChooser.fileChoose().getPath());
     }
 
     public void reloadButtonAL(JComboBox checkPrintChoose, JTextArea checkTextArea,
@@ -101,33 +101,44 @@ public class ActionListenerHelper {
                 "   amount: " + catagoryHelper.getLowestIncomeCatagory().getAmount());
     }
 
-    public void addCostAL(JTextField amountTextFieldCost, JComboBox costChoose, JCheckBox hiddenCheckBox) {
+
+
+
+    public void addCostAL(JTextField amountTextFieldCost, JComboBox costChoose, JCheckBox hiddenCheckBox)  {
         if (amountTextFieldCost.getText() != null && !amountTextFieldCost.getText().equals("Amount")) {
 
             loggedInUser.setBalance(loggedInUser.getBalance() - Integer.parseInt(amountTextFieldCost.getText()));
             catagoryHelper.getCatagory(costChoose.getSelectedIndex() + 7)
                     .setAmount(catagoryHelper.getCatagory(costChoose.getSelectedIndex() + 7)
                             .getAmount() - Integer.parseInt(amountTextFieldCost.getText()));
-
-            paymentCollection.addCosts(catagoryHelper.getCatagory(costChoose.getSelectedIndex() + 7),
-                    Integer.parseInt(amountTextFieldCost.getText()), hiddenCheckBox.isSelected());
+            try {
+                paymentCollection.addCosts(catagoryHelper.getCatagory(costChoose.getSelectedIndex() + 7),
+                        Integer.parseInt(amountTextFieldCost.getText()), hiddenCheckBox.isSelected(),loggedInUser);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
 
     public void addInAL(JTextField amountBoxIncome, JCheckBox transferToBalanceCheckBoxIncome,
-                        JComboBox incomeChoose, JCheckBox taxesCheckBoxIncome) {
+                        JComboBox incomeChoose, JCheckBox taxesCheckBoxIncome)  {
         if (amountBoxIncome.getText() != null && !amountBoxIncome.getText().equals("Amount")) {
             loggedInUser.setBalance(loggedInUser.getBalance() + Integer.parseInt(amountBoxIncome.getText()));
 
             catagoryHelper.getCatagory(incomeChoose.getSelectedIndex())
                     .setAmount(catagoryHelper.getCatagory(incomeChoose.getSelectedIndex())
                             .getAmount() + Integer.parseInt(amountBoxIncome.getText()));
-
-            paymentCollection.addIncome(catagoryHelper.getCatagory(incomeChoose.getSelectedIndex()),
-                    Integer.parseInt(amountBoxIncome.getText())
-                    , transferToBalanceCheckBoxIncome.isSelected(), taxesCheckBoxIncome.isSelected());
+            try {
+                paymentCollection.addIncome(catagoryHelper.getCatagory(incomeChoose.getSelectedIndex()),
+                        Integer.parseInt(amountBoxIncome.getText())
+                        , transferToBalanceCheckBoxIncome.isSelected(), taxesCheckBoxIncome.isSelected(), loggedInUser);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
+
+
 
     private void resetPanels(JPanel exportPanel, JPanel mostPanel, JPanel incomesPanel, JPanel costsPanel
             , JPanel balancePanel, JPanel getCheckPanel) {

@@ -1,21 +1,29 @@
 package com.JavaCode.project.gui;
 
 import com.JavaCode.project.Payments.PaymentCollection;
-import com.JavaCode.project.Payments.PaymentsFileReader;
-import com.JavaCode.project.Payments.PaymentsFileWriter;
 import com.JavaCode.project.catagory.CatagoryCollection;
 import com.JavaCode.project.catagory.CatagoryHelper;
+import com.JavaCode.project.database.DataBaseConnection;
+import com.JavaCode.project.database.DatabaseMethods;
 import com.JavaCode.project.gui.login.Login;
 import com.JavaCode.project.model.User;
 import com.JavaCode.project.user.UserCollection;
-import com.JavaCode.project.user.UserReader;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class SetUp {
 
     private JFrame loginFrame;
     private JFrame mainFrame;
+    private final DataBaseConnection dataBaseConnection;
+
+    private CatagoryCollection catagoryCollection;
+    private PaymentCollection paymentCollection;
+
+    public SetUp() throws SQLException {
+        dataBaseConnection = new DataBaseConnection();
+    }
 
     public void run(){
         setUpLoginFrame();
@@ -32,9 +40,23 @@ public class SetUp {
     }
 
     public void setUpLoginFrame() {
+        catagoryCollection = new CatagoryCollection();
+        paymentCollection = new PaymentCollection();
         UserCollection userCollection = new UserCollection();
-        UserReader userReader = new UserReader(userCollection);
-        userReader.readFile();
+        DatabaseMethods databaseMethods = new DatabaseMethods(dataBaseConnection,catagoryCollection,paymentCollection,userCollection);
+
+        userCollection.setDatabaseMethods(databaseMethods);
+        paymentCollection.setDatabaseMethods(databaseMethods);
+
+        try {
+            databaseMethods.readUsersFromDb();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
+        }
+
+//        UserReader userReader = new UserReader(userCollection);
+//        userReader.readFile();
+
         Login loginGUI = new Login(userCollection, this);
         this.loginFrame = new JFrame("Income and Costs");
         this.loginFrame.setContentPane(loginGUI.getMainPanel());
@@ -43,17 +65,15 @@ public class SetUp {
     }
 
     public void setUpMainFrame(User loggedInUser) {
-        CatagoryCollection catagoryCollection = new CatagoryCollection();
         CatagoryHelper catagoryHelper = new CatagoryHelper(catagoryCollection);
 
-        PaymentCollection paymentCollection = new PaymentCollection();
-        PaymentsFileWriter paymentsFileWriter = new PaymentsFileWriter();
-        PaymentsFileReader paymentsFileReader = new PaymentsFileReader(paymentCollection, catagoryHelper, loggedInUser);
-        paymentsFileReader.readFile();
+//        PaymentsFileWriter paymentsFileWriter = new PaymentsFileWriter();
+//        PaymentsFileReader paymentsFileReader = new PaymentsFileReader(paymentCollection, catagoryHelper, loggedInUser);
+//        paymentsFileReader.readFile();
 
         this.mainFrame = new JFrame("Income and Costs");
-        this.mainFrame.setContentPane(new Program(paymentCollection, paymentsFileWriter,
-                loggedInUser, catagoryCollection, paymentsFileReader).getMainPanel());
+        this.mainFrame.setContentPane(new Program(paymentCollection,
+                loggedInUser, catagoryCollection).getMainPanel());
         this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainFrame.pack();
     }

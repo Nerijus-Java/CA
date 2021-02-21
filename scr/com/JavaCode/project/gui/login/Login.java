@@ -5,6 +5,7 @@ import com.JavaCode.project.model.User;
 import com.JavaCode.project.user.UserCollection;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class Login {
     //login Panel
@@ -37,7 +38,11 @@ public class Login {
 
         register.addActionListener(e ->{
             if (username.getText() != null && !username.getText().equals("Username") && password.getText() != null){
-                userCollection.addNewUser(username.getText(), password.getText());
+                try {
+                    userCollection.addNewUser(username.getText(), password.getText());
+                } catch (SQLException throwable) {
+                    throwable.printStackTrace();
+                }
             }
         });
     }

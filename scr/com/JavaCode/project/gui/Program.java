@@ -1,8 +1,6 @@
 package com.JavaCode.project.gui;
 
 import com.JavaCode.project.Payments.PaymentCollection;
-import com.JavaCode.project.Payments.PaymentsFileReader;
-import com.JavaCode.project.Payments.PaymentsFileWriter;
 import com.JavaCode.project.Payments.Printer;
 import com.JavaCode.project.catagory.CatagoryCollection;
 import com.JavaCode.project.catagory.CatagoryHelper;
@@ -66,11 +64,11 @@ public class Program {
     private final Printer printer = new Printer();
     private final ActionListenerHelper aLHelper;
 
-    public Program(PaymentCollection paymentCollection, PaymentsFileWriter pFW,
-                   User user, CatagoryCollection catagoryCollection, PaymentsFileReader pFR) {
+    public Program(PaymentCollection paymentCollection,
+                   User user, CatagoryCollection catagoryCollection) {
         this.loggedInUser = user;
         CatagoryHelper catagoryHelper = new CatagoryHelper(catagoryCollection);
-        this.aLHelper = new ActionListenerHelper(catagoryHelper, user, paymentCollection, pFW,pFR);
+        this.aLHelper = new ActionListenerHelper(catagoryHelper, user, paymentCollection);
 
         makeListenersForToolBar();
         startingVariables();

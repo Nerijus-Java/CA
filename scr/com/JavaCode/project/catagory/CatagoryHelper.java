@@ -4,8 +4,8 @@ import com.JavaCode.project.model.Catagory;
 
 public class CatagoryHelper {
 
-    public static final Catagory NONE_INCOME = new Catagory("None", true, 0);
-    public static final Catagory NONE_COST = new Catagory("None", false, 0);
+    public static final Catagory NONE_INCOME = new Catagory("None", true, 0,0);
+    public static final Catagory NONE_COST = new Catagory("None", false, 0,0);
 
     private CatagoryCollection catagoryCollection;
 

@@ -1,19 +1,24 @@
 package com.JavaCode.project.user;
 
+import com.JavaCode.project.database.DatabaseMethods;
 import com.JavaCode.project.model.User;
+
+import java.sql.SQLException;
 
 public class UserCollection {
 
     private User[] users;
-    private final UserWriter writer = new UserWriter();
+    private DatabaseMethods databaseMethods;
+//    private final UserWriter writer = new UserWriter();
 
     public UserCollection() {
         this.users = new User[0];
     }
 
-    public void addNewUser(String name,String password){
+    public void addNewUser(String name,String password) throws SQLException {
         User newUser = new User(name,password);
-        writer.writeOneUserToFile(newUser);
+//        writer.writeOneUserToFile(newUser);
+        databaseMethods.addUserToDB(newUser);
         addMoreRoom();
         users[users.length - 1] = newUser;
     }
@@ -47,5 +52,9 @@ public class UserCollection {
 
     public User[] getUsers() {
         return users;
+    }
+
+    public void setDatabaseMethods(DatabaseMethods databaseMethods) {
+        this.databaseMethods = databaseMethods;
     }
 }
