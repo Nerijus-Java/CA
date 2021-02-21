@@ -1,6 +1,4 @@
-package com.JavaCode.project.Payments;
-
-import com.JavaCode.project.catagory.Catagory;
+package com.JavaCode.project.model;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

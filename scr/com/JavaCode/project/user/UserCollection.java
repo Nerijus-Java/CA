@@ -1,5 +1,7 @@
 package com.JavaCode.project.user;
 
+import com.JavaCode.project.model.User;
+
 public class UserCollection {
 
     private User[] users;

@@ -1,5 +1,7 @@
 package com.JavaCode.project.catagory;
 
+import com.JavaCode.project.model.Catagory;
+
 public class CatagoryCollection {
 
     Catagory[] catagory = new Catagory[]{

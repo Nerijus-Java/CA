@@ -1,7 +1,7 @@
 package com.JavaCode.project.gui.login;
 
 import com.JavaCode.project.gui.SetUp;
-import com.JavaCode.project.user.User;
+import com.JavaCode.project.model.User;
 import com.JavaCode.project.user.UserCollection;
 
 import javax.swing.*;

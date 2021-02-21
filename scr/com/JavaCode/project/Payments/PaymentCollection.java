@@ -1,6 +1,7 @@
 package com.JavaCode.project.Payments;
 
-import com.JavaCode.project.catagory.Catagory;
+import com.JavaCode.project.model.Catagory;
+import com.JavaCode.project.model.Payments;
 
 import java.util.Date;
 

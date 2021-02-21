@@ -1,5 +1,7 @@
 package com.JavaCode.project.Payments;
 
+import com.JavaCode.project.model.Payments;
+
 import java.util.Date;
 
 public class Printer {

@@ -1,5 +1,7 @@
 package com.JavaCode.project.user;
 
+import com.JavaCode.project.model.User;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;

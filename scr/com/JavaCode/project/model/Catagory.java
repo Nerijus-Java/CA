@@ -1,4 +1,4 @@
-package com.JavaCode.project.catagory;
+package com.JavaCode.project.model;
 
 public class Catagory {
 

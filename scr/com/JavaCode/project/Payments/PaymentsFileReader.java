@@ -1,8 +1,8 @@
 package com.JavaCode.project.Payments;
 
-import com.JavaCode.project.catagory.Catagory;
+import com.JavaCode.project.model.Catagory;
 import com.JavaCode.project.catagory.CatagoryHelper;
-import com.JavaCode.project.user.User;
+import com.JavaCode.project.model.User;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;

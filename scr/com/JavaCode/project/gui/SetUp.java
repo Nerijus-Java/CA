@@ -6,7 +6,7 @@ import com.JavaCode.project.Payments.PaymentsFileWriter;
 import com.JavaCode.project.catagory.CatagoryCollection;
 import com.JavaCode.project.catagory.CatagoryHelper;
 import com.JavaCode.project.gui.login.Login;
-import com.JavaCode.project.user.User;
+import com.JavaCode.project.model.User;
 import com.JavaCode.project.user.UserCollection;
 import com.JavaCode.project.user.UserReader;
 

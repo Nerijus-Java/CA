@@ -1,5 +1,7 @@
 package com.JavaCode.project.catagory;
 
+import com.JavaCode.project.model.Catagory;
+
 public class CatagoryHelper {
 
     public static final Catagory NONE_INCOME = new Catagory("None", true, 0);

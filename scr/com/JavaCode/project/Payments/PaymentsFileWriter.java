@@ -1,5 +1,7 @@
 package com.JavaCode.project.Payments;
 
+import com.JavaCode.project.model.Payments;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
