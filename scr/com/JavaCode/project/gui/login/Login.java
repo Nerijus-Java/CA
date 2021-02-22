@@ -29,7 +29,11 @@ public class Login {
         login.addActionListener(e -> {
             for (User u : userCollection.getUsers()){
                 if (username.getText().equals(u.getName()) && password.getText().equals(u.getPassword())){
-                    setUp.setUpMainFrame(u);
+                    try {
+                        setUp.setUpMainFrame(u);
+                    } catch (SQLException throwable) {
+                        throwable.printStackTrace();
+                    }
                     setUp.runMainFrame();
                     break;
                 }

@@ -114,8 +114,8 @@ public class ActionListenerHelper {
             try {
                 paymentCollection.addCosts(catagoryHelper.getCatagory(costChoose.getSelectedIndex() + 7),
                         Integer.parseInt(amountTextFieldCost.getText()), hiddenCheckBox.isSelected(),loggedInUser);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException throwable) {
+                throwable.printStackTrace();
             }
         }
     }
@@ -132,8 +132,8 @@ public class ActionListenerHelper {
                 paymentCollection.addIncome(catagoryHelper.getCatagory(incomeChoose.getSelectedIndex()),
                         Integer.parseInt(amountBoxIncome.getText())
                         , transferToBalanceCheckBoxIncome.isSelected(), taxesCheckBoxIncome.isSelected(), loggedInUser);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+            } catch (SQLException throwable) {
+                throwable.printStackTrace();
             }
         }
     }

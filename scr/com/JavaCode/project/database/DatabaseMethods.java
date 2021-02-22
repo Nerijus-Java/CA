@@ -35,14 +35,20 @@ public class DatabaseMethods {
     public void addIncome(int amount, boolean transfer, boolean taxes, int catagoryID, User loggedInUser) throws SQLException {
         int userID = getUserIDByNameAndPassword(loggedInUser);
         if (userID != -1){
+            dataBaseConnection.getStatement().execute(queryHelper.addOrMinusToBalance(amount,userID));
+            dataBaseConnection.getStatement().execute(queryHelper.incomeCatagoryAddOrMinus(amount,catagoryID));
             dataBaseConnection.getStatement().execute(queryHelper.addIncome(amount,transfer,taxes,userID,catagoryID));
+            System.out.println("Income Added");
         }
     }
 
     public void addCost(int amount , boolean hidden, int catagoryID, User loggedInUser) throws SQLException {
         int userID = getUserIDByNameAndPassword(loggedInUser);
         if (userID != -1 ){
+            dataBaseConnection.getStatement().execute(queryHelper.addOrMinusToBalance(amount,userID));
+            dataBaseConnection.getStatement().execute(queryHelper.costCatagoryAddOrMinus(amount,catagoryID));
             dataBaseConnection.getStatement().execute(queryHelper.addCost(amount,hidden,catagoryID,userID));
+            System.out.println("Cost Added");
         }
     }
 
@@ -50,6 +56,38 @@ public class DatabaseMethods {
         resultSet = dataBaseConnection.getStatement().executeQuery(queryHelper.allUsersQuery);
         while (resultSet.next()){
             userCollection.addOldUser(resultSet.getString(1),resultSet.getString(2));
+            System.out.println("Users read from db");
+        }
+    }
+
+    public void readPaymentsFromCatagory(User loggedInUser) throws SQLException {
+        int userID = getUserIDByNameAndPassword(loggedInUser);
+        if (userID != -1){
+            resultSet = dataBaseConnection.getStatement().executeQuery(queryHelper.allCostsFromDB(userID));
+            while (resultSet.next()){
+                paymentCollection.addOldCost(catagoryCollection.getCatagoryByID(resultSet.getInt(2),false),resultSet.getInt(1),
+                        resultSet.getDate(3),resultSet.getBoolean(4));
+            }
+
+            resultSet = dataBaseConnection.getStatement().executeQuery(queryHelper.allIncomeFromDB(userID));
+            while(resultSet.next()){
+                paymentCollection.addOldIncome(catagoryCollection.getCatagoryByID(resultSet.getInt(2),true),resultSet.getInt(1),
+                        resultSet.getDate(3),resultSet.getBoolean(4),resultSet.getBoolean(5));
+            }
+        }
+    }
+
+    public void readCategoryFrameDb(User loggedInUser) throws SQLException {
+        int userID = getUserIDByNameAndPassword(loggedInUser);
+        if (userID != -1){
+            resultSet = dataBaseConnection.getStatement().executeQuery(queryHelper.allCostCategoriesFromDB(userID));
+            while (resultSet.next()){
+                catagoryCollection.getCatagoryByName(resultSet.getString(3)).setAmount(resultSet.getInt(1));
+            }
+            resultSet = dataBaseConnection.getStatement().executeQuery(queryHelper.allIncomeCategoriesFromDB(userID));
+            while (resultSet.next()){
+                catagoryCollection.getCatagoryByName(resultSet.getString(3)).setAmount(resultSet.getInt(1));
+            }
         }
     }
     

@@ -50,7 +50,6 @@ public class PaymentCollection {
 
     public void addOldCost(Catagory catagory, int amount,Date date, boolean hidden){
         addMoreRoom();
-
         Payments newPayment = new Payments(catagory, amount, date, true, false, false, hidden);
         payments[payments.length - 1] = newPayment;
     }

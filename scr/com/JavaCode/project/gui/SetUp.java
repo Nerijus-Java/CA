@@ -2,7 +2,6 @@ package com.JavaCode.project.gui;
 
 import com.JavaCode.project.Payments.PaymentCollection;
 import com.JavaCode.project.catagory.CatagoryCollection;
-import com.JavaCode.project.catagory.CatagoryHelper;
 import com.JavaCode.project.database.DataBaseConnection;
 import com.JavaCode.project.database.DatabaseMethods;
 import com.JavaCode.project.gui.login.Login;
@@ -20,6 +19,7 @@ public class SetUp {
 
     private CatagoryCollection catagoryCollection;
     private PaymentCollection paymentCollection;
+    private DatabaseMethods databaseMethods;
 
     public SetUp() throws SQLException {
         dataBaseConnection = new DataBaseConnection();
@@ -43,7 +43,7 @@ public class SetUp {
         catagoryCollection = new CatagoryCollection();
         paymentCollection = new PaymentCollection();
         UserCollection userCollection = new UserCollection();
-        DatabaseMethods databaseMethods = new DatabaseMethods(dataBaseConnection,catagoryCollection,paymentCollection,userCollection);
+        databaseMethods = new DatabaseMethods(dataBaseConnection,catagoryCollection,paymentCollection,userCollection);
 
         userCollection.setDatabaseMethods(databaseMethods);
         paymentCollection.setDatabaseMethods(databaseMethods);
@@ -64,9 +64,10 @@ public class SetUp {
         this.loginFrame.pack();
     }
 
-    public void setUpMainFrame(User loggedInUser) {
-        CatagoryHelper catagoryHelper = new CatagoryHelper(catagoryCollection);
+    public void setUpMainFrame(User loggedInUser) throws SQLException {
 
+        databaseMethods.readCategoryFrameDb(loggedInUser);
+        databaseMethods.readPaymentsFromCatagory(loggedInUser);
 //        PaymentsFileWriter paymentsFileWriter = new PaymentsFileWriter();
 //        PaymentsFileReader paymentsFileReader = new PaymentsFileReader(paymentCollection, catagoryHelper, loggedInUser);
 //        paymentsFileReader.readFile();
