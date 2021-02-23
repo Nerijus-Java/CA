@@ -1,4 +1,4 @@
-package com.JavaCode.project.user;
+package com.JavaCode.project.collection;
 
 import com.JavaCode.project.database.DatabaseMethods;
 import com.JavaCode.project.model.User;
@@ -9,7 +9,6 @@ public class UserCollection {
 
     private User[] users;
     private DatabaseMethods databaseMethods;
-//    private final UserWriter writer = new UserWriter();
 
     public UserCollection() {
         this.users = new User[0];
@@ -17,7 +16,6 @@ public class UserCollection {
 
     public void addNewUser(String name,String password) throws SQLException {
         User newUser = new User(name,password);
-//        writer.writeOneUserToFile(newUser);
         databaseMethods.addUserToDB(newUser);
         addMoreRoom();
         users[users.length - 1] = newUser;

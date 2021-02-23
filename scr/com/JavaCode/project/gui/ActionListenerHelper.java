@@ -1,8 +1,9 @@
 package com.JavaCode.project.gui;
 
-import com.JavaCode.project.Payments.PaymentCollection;
+import com.JavaCode.project.collection.PaymentCollection;
 import com.JavaCode.project.Payments.Printer;
 import com.JavaCode.project.catagory.CatagoryHelper;
+import com.JavaCode.project.database.DatabaseMethods;
 import com.JavaCode.project.model.User;
 
 import javax.swing.*;
@@ -13,37 +14,27 @@ public class ActionListenerHelper {
     private final CatagoryHelper catagoryHelper;
     private final User loggedInUser;
     private final PaymentCollection paymentCollection;
-
-//    private final PaymentsFileWriter paymentsFileWriter;
-//    private final PaymentsFileReader paymentsFileReader;
+    private final DatabaseMethods databaseMethods;
 
     public ActionListenerHelper(CatagoryHelper catagoryHelper, User loggedInUser,
-                                PaymentCollection paymentCollection) {
+                                PaymentCollection paymentCollection, DatabaseMethods databaseMethods) {
+        this.databaseMethods = databaseMethods;
         this.catagoryHelper = catagoryHelper;
         this.loggedInUser = loggedInUser;
         this.paymentCollection = paymentCollection;
-//        this.paymentsFileWriter = pFW;
-//        this.paymentsFileReader = pFR;
+
     }
 
     public void exportButtonAL(){
-//        FileChooser fileChooser = new FileChooser();
-//        paymentsFileWriter.export(paymentCollection.getPayments(), fileChooser.fileChoose().getPath());
+
     }
 
     public void newButtonAL(){
-//        loggedInUser.setBalance(0);
-//        catagoryHelper.resetCategories();
-//        paymentCollection.resetArray();
-//        paymentsFileWriter.resetFile(paymentCollection.getPayments());
+
     }
 
     public void openButtonAL(){
-//        FileChooser fileChooser = new FileChooser();
-//        loggedInUser.setBalance(0);
-//        catagoryHelper.resetCategories();
-//        paymentCollection.resetArray();
-//        paymentsFileReader.readNewFile(fileChooser.fileChoose().getPath());
+
     }
 
     public void reloadButtonAL(JComboBox checkPrintChoose, JTextArea checkTextArea,
@@ -138,7 +129,9 @@ public class ActionListenerHelper {
         }
     }
 
-
+    public int getBalance(User loggedInUser) throws SQLException {
+        return databaseMethods.getBalance(loggedInUser);
+    }
 
     private void resetPanels(JPanel exportPanel, JPanel mostPanel, JPanel incomesPanel, JPanel costsPanel
             , JPanel balancePanel, JPanel getCheckPanel) {
@@ -149,4 +142,6 @@ public class ActionListenerHelper {
         balancePanel.setVisible(false);
         getCheckPanel.setVisible(false);
     }
+
+
 }

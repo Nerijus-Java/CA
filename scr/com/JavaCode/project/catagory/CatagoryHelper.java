@@ -1,5 +1,6 @@
 package com.JavaCode.project.catagory;
 
+import com.JavaCode.project.collection.CatagoryCollection;
 import com.JavaCode.project.model.Catagory;
 
 public class CatagoryHelper {

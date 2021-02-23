@@ -22,7 +22,7 @@ public class Printer {
     public String printCostPayment(Payments[] payments){
         StringBuilder holder = new StringBuilder();
         for (Payments p : payments){
-            if (!p.getIncomeOrCost()){
+            if (!p.getIncomeOrCost() && !p.getHiddenCost()){
                 makeOneLine(holder, p);
             }
         }

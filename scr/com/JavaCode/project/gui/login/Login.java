@@ -1,8 +1,10 @@
 package com.JavaCode.project.gui.login;
 
+import com.JavaCode.project.collection.UserCollection;
+import com.JavaCode.project.database.DataBaseConnection;
+import com.JavaCode.project.database.QueryHelper;
 import com.JavaCode.project.gui.SetUp;
 import com.JavaCode.project.model.User;
-import com.JavaCode.project.user.UserCollection;
 
 import javax.swing.*;
 import java.sql.SQLException;
@@ -18,10 +20,13 @@ public class Login {
     //Helpers and other classes
     private final UserCollection userCollection;
     private final SetUp setUp;
-
-    public Login(UserCollection userCollection, SetUp setUp) {
+    private final DataBaseConnection dataBaseConnection;
+    private final QueryHelper queryHelper;
+    public Login(UserCollection userCollection, SetUp setUp, DataBaseConnection dataBaseConnection) {
         this.userCollection = userCollection;
         this.setUp = setUp;
+        this.queryHelper = new QueryHelper();
+        this.dataBaseConnection = dataBaseConnection;
         setUpButtonActionListeners();
     }
 

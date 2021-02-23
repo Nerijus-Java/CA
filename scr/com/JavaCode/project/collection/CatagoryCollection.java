@@ -1,10 +1,10 @@
-package com.JavaCode.project.catagory;
+package com.JavaCode.project.collection;
 
 import com.JavaCode.project.model.Catagory;
 
 public class CatagoryCollection {
 
-    Catagory[] catagory = new Catagory[]{
+    public Catagory[] catagory = new Catagory[]{
             new Catagory("Salary", true, 0, 1),
             new Catagory("Real estate for rent", true, 0, 2),
             new Catagory("Scholarship", true, 0, 3),

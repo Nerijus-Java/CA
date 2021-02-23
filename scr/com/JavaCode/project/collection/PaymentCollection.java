@@ -1,4 +1,4 @@
-package com.JavaCode.project.Payments;
+package com.JavaCode.project.collection;
 
 import com.JavaCode.project.database.DatabaseMethods;
 import com.JavaCode.project.model.Catagory;
@@ -41,7 +41,9 @@ public class PaymentCollection {
         addMoreRoom();
 
         Payments newPayment = new Payments(catagory, -amount, new Date(), true, false, false, hidden);
+
         databaseMethods.addCost(amount,hidden,catagory.getId(),loggedInUser);
+
         payments[payments.length - 1] = newPayment;
 
     }

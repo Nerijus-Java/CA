@@ -13,7 +13,7 @@ public class DataBaseConnection {
 
     private void openConnection() throws SQLException {
         connection = DriverManager.getConnection(
-                "jdbc:h2:C:\\Users\\pcner\\Desktop\\h2\\ProjectDb",
+                "jdbc:h2:C:\\Users\\pcner\\Desktop\\h2\\project\\MainProject\\projectDataBase",
                 "", "");
         statement = connection.createStatement();
 

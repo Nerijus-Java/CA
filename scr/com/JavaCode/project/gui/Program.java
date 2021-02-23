@@ -1,12 +1,14 @@
 package com.JavaCode.project.gui;
 
-import com.JavaCode.project.Payments.PaymentCollection;
+import com.JavaCode.project.collection.PaymentCollection;
 import com.JavaCode.project.Payments.Printer;
-import com.JavaCode.project.catagory.CatagoryCollection;
+import com.JavaCode.project.collection.CatagoryCollection;
 import com.JavaCode.project.catagory.CatagoryHelper;
+import com.JavaCode.project.database.DatabaseMethods;
 import com.JavaCode.project.model.User;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class Program {
 
@@ -63,12 +65,14 @@ public class Program {
     private final User loggedInUser;
     private final Printer printer = new Printer();
     private final ActionListenerHelper aLHelper;
+    private final DatabaseMethods databaseMethods;
 
     public Program(PaymentCollection paymentCollection,
-                   User user, CatagoryCollection catagoryCollection) {
+                   User user, CatagoryCollection catagoryCollection,DatabaseMethods databaseMethods) {
         this.loggedInUser = user;
+        this.databaseMethods = databaseMethods;
         CatagoryHelper catagoryHelper = new CatagoryHelper(catagoryCollection);
-        this.aLHelper = new ActionListenerHelper(catagoryHelper, user, paymentCollection);
+        this.aLHelper = new ActionListenerHelper(catagoryHelper, user, paymentCollection, databaseMethods);
 
         makeListenersForToolBar();
         startingVariables();
@@ -115,7 +119,11 @@ public class Program {
         addButtonCosts.addActionListener(e -> aLHelper.addCostAL(amountTextFieldCost, costChoose, hiddenCheckBox));
 
         buttonBalance.addActionListener(e -> {
-            amountTextField.setText(loggedInUser.getBalance() + "");
+            try {
+                amountTextField.setText(aLHelper.getBalance(loggedInUser) + " ");
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
             aLHelper.toolbarVisibilityAL(exportPanel, mostPanel, incomesPanel, costsPanel, balancePanel, checkPanel
                     , balancePanel);
         });
