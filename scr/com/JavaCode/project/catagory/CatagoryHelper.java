@@ -8,7 +8,7 @@ public class CatagoryHelper {
     public static final Catagory NONE_INCOME = new Catagory("None", true, 0,0);
     public static final Catagory NONE_COST = new Catagory("None", false, 0,0);
 
-    private CatagoryCollection catagoryCollection;
+    private final CatagoryCollection catagoryCollection;
 
     public CatagoryHelper(CatagoryCollection catagoryCollection) {
         this.catagoryCollection = catagoryCollection;
@@ -69,11 +69,4 @@ public class CatagoryHelper {
         return catagoryMax;
     }
 
-    public void resetCategories(){
-        catagoryCollection = new CatagoryCollection();
-    }
-
-    public CatagoryCollection getCatagoryCollection() {
-        return catagoryCollection;
-    }
 }

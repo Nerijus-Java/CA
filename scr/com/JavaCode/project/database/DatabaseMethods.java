@@ -2,7 +2,6 @@ package com.JavaCode.project.database;
 
 import com.JavaCode.project.collection.CatagoryCollection;
 import com.JavaCode.project.collection.PaymentCollection;
-import com.JavaCode.project.collection.UserCollection;
 import com.JavaCode.project.model.User;
 
 import java.sql.ResultSet;
@@ -15,16 +14,13 @@ public class DatabaseMethods {
     private final QueryHelper queryHelper = new QueryHelper();
     private final CatagoryCollection catagoryCollection;
     private final PaymentCollection paymentCollection;
-    private final UserCollection userCollection;
 
     public DatabaseMethods(DataBaseConnection dataBaseConnection,
                            CatagoryCollection catagoryCollection,
-                           PaymentCollection paymentCollection,
-                           UserCollection userCollection) {
+                           PaymentCollection paymentCollection) {
         this.dataBaseConnection = dataBaseConnection;
         this.catagoryCollection = catagoryCollection;
         this.paymentCollection = paymentCollection;
-        this.userCollection = userCollection;
     }
 
     public void addUserToDB(User user) throws SQLException {
@@ -32,7 +28,7 @@ public class DatabaseMethods {
         System.out.println("User Added");
         int userID = getUserIDByNameAndPassword(user);
         dataBaseConnection.getStatement().execute(queryHelper.addPersonCostCategory(userID));
-        dataBaseConnection.getStatement().execute(queryHelper.addPersonIncomeCatagorys(userID));
+        dataBaseConnection.getStatement().execute(queryHelper.addPersonIncomeCategories(userID));
         dataBaseConnection.getStatement().execute(queryHelper.makeBalance(userID));
     }
 
@@ -51,7 +47,7 @@ public class DatabaseMethods {
         int userID = getUserIDByNameAndPassword(loggedInUser);
         if (userID != -1) {
             dataBaseConnection.getStatement().execute(queryHelper.addOrMinusToBalance(amount, userID));
-            dataBaseConnection.getStatement().execute(queryHelper.incomeCatagoryAddOrMinus(amount, catagoryID));
+            dataBaseConnection.getStatement().execute(queryHelper.incomeCatagoryAddOrMinus(amount, catagoryID, userID));
             dataBaseConnection.getStatement().execute(queryHelper.addIncome(amount, transfer, taxes, userID, catagoryID));
             System.out.println("Income Added");
         }
@@ -61,19 +57,19 @@ public class DatabaseMethods {
         int userID = getUserIDByNameAndPassword(loggedInUser);
         if (userID != -1) {
             dataBaseConnection.getStatement().execute(queryHelper.addOrMinusToBalance(-amount, userID));
-            dataBaseConnection.getStatement().execute(queryHelper.costCatagoryAddOrMinus(-amount, catagoryID));
+            dataBaseConnection.getStatement().execute(queryHelper.costCatagoryAddOrMinus(-amount, catagoryID,userID));
             dataBaseConnection.getStatement().execute(queryHelper.addCost(-amount, hidden, userID, catagoryID));
             System.out.println("Cost Added");
         }
     }
 
-    public void readUsersFromDb() throws SQLException {
-        resultSet = dataBaseConnection.getStatement().executeQuery(queryHelper.allUsersQuery);
-        while (resultSet.next()) {
-            userCollection.addOldUser(resultSet.getString(1), resultSet.getString(2));
-            System.out.println("Users read from db");
-        }
-    }
+//    public void readUsersFromDb() throws SQLException {
+//        resultSet = dataBaseConnection.getStatement().executeQuery(queryHelper.allUsersQuery);
+//        while (resultSet.next()) {
+//            userCollection.addOldUser(resultSet.getString(1), resultSet.getString(2));
+//            System.out.println("Users read from db");
+//        }
+//    }
 
     public void readPaymentsFromCatagory(User loggedInUser) throws SQLException {
         int userID = getUserIDByNameAndPassword(loggedInUser);

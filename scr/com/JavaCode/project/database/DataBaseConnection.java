@@ -19,15 +19,6 @@ public class DataBaseConnection {
 
     }
 
-    public void closeConnection() throws SQLException {
-        System.out.println("Closing DB Connection...");
-        connection.close();
-    }
-
-    public Connection getConnection() {
-        return connection;
-    }
-
     public Statement getStatement() {
         return statement;
     }

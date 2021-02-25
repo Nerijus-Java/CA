@@ -4,6 +4,16 @@ public class QueryHelper {
 
     public String allUsersQuery = "SELECT p.NAME ,p.PASSWORD ,p.USER_ID FROM PERSON p;";
 
+    public String userByNameAndPassword(String name, String password) {
+       return  "SELECT p.NAME ,p.PASSWORD ,p.USER_ID FROM PERSON p\n" +
+                "WHERE p.NAME = '"+name+"' AND p.PASSWORD = '"+password+"';";
+    }
+
+    public String checkUsersName(String name){
+        return "SELECT COUNT(*) FROM PERSON p "+
+        "WHERE NAME = '"+name+"';";
+    }
+
     public String userBalanceByID(int userID) {
         return "SELECT AMOUNT FROM BALANCE WHERE USER_ID = " + userID + ";";
     }
@@ -33,7 +43,7 @@ public class QueryHelper {
                 "VALUES (0," + userID + ");";
     }
 
-    public String addPersonIncomeCatagorys(int userID) {
+    public String addPersonIncomeCategories(int userID) {
         return "INSERT INTO INCOME_CATAGORY (NAME,AMOUNT,USER_ID) " +
                 "VALUES " +
                 " ('Salary',0," + userID + "), " +
@@ -77,11 +87,23 @@ public class QueryHelper {
         return "UPDATE BALANCE SET AMOUNT = AMOUNT + " + amount + " WHERE USER_ID = " + userID + ";";
     }
 
-    public String costCatagoryAddOrMinus(int amount, int catagoryID) {
-        return "UPDATE COST_CATAGORY SET AMOUNT = " + amount + " + 20 WHERE COST_CATAGORY_ID = " + catagoryID + ";";
+    public String costCatagoryAddOrMinus(int amount, int catagoryID, int userID) {
+        if (userID == 1){
+            return "UPDATE COST_CATAGORY SET AMOUNT = AMOUNT + "+amount+" WHERE COST_CATAGORY_ID = " + catagoryID + ";";
+        } else {
+            int id = catagoryID + (9 * (userID - 1));
+            return "UPDATE COST_CATAGORY SET AMOUNT = AMOUNT + "+amount+" WHERE COST_CATAGORY_ID = " + id + ";";
+        }
+
     }
 
-    public String incomeCatagoryAddOrMinus(int amount, int catagoryID) {
-        return "UPDATE INCOME_CATAGORY SET AMOUNT = " + amount + " + 20 WHERE INCOME_CATAGORY_ID = " + catagoryID + ";";
+    public String incomeCatagoryAddOrMinus(int amount, int catagoryID ,int userID) {
+
+        if (userID == 1){
+            return "UPDATE INCOME_CATAGORY SET AMOUNT = AMOUNT + "+amount+" WHERE INCOME_CATAGORY_ID = " + catagoryID + ";";
+        }else {
+            int id = catagoryID + (7 * (userID - 1));
+            return "UPDATE INCOME_CATAGORY SET AMOUNT = AMOUNT + "+amount+" WHERE INCOME_CATAGORY_ID = " + id + ";";
+        }
     }
 }

@@ -5,7 +5,7 @@ public class Catagory {
     private final String name;
     private final boolean income;
     private int amount;
-    private int id;
+    private final int id;
 
     public Catagory(String name, boolean income, int amount, int id) {
         this.name = name;
